@@ -567,7 +567,7 @@ def highflu(fsz, txtx):
     counter=0
     for i in range(0,6):
         pics[2].plot(cs[i][0], cs[i][1], color=colors[i], lw=3.0)
-    dirplot('Cobalt', -0.09, colors, pics[2], 2, 6, [3])
+    dirplot('Cobalt', -0.09, colors, pics[2], 2, 6, [])
     pics[2].annotate(r'600', (txtx, 0.9), fontsize=fsz, color=colors[2])
     pics[2].annotate(r'839', (txtx, 0.88), fontsize=fsz, color=colors[4])
     pics[2].annotate(r'1078', (txtx, 0.86), fontsize=fsz, color=colors[6])
