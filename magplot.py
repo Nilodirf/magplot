@@ -865,7 +865,7 @@ def niplot(fs):
 #energy(17, color8)
 #koopmans(10)
 #highflu(16, 1.5)
-gadplot()
-#niplot(17)
+#gadplot()
+niplot(17)
 
 plt.show()
