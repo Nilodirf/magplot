@@ -773,24 +773,20 @@ def gadplot():
     #gtasf=ownplot('Gadolinium/temp_cehasfh.dat', 'tem')
 
     #PLOT exp mag data#
-    #plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
-    #plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
-    #plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
-    #plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
+    plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
+    plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
+    plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
+    plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
     plots[0].scatter(dat4[0]+0.1, dat4[1], s=40, marker='o', color=colors[9])
-    #plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
+    plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
 
     #PLOT sim mag data#
-    #plots[0].plot(g[0]-30, g[1]/0.948, lw=3.0, color=color1)
-    #plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=color4)
-    #plots[0].plot(g1b[0]-30, g1b[1]/1.27, lw=3.0, color=color4, ls='dashed')
-    #plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
-    #plots[0].plot(g2b[0]-30, g2b[1]/0.963, lw=3.0, color=color6, ls='dashed')
-    #plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
-    #plots[0].plot(g3b[0]-30, g3b[1]/1.27, lw=3.0, color=color8, ls='dashed')
-    #plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=colors[9])
+    plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=color1)
+    plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=color4)
+    plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
+    plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
     plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[9])
-    #plots[0].plot(g2ot[0]-30, g2ot[1]/0.948, lw=3.0, color=color1, ls='dashed')
+    plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
 
     #READ exp temp data#
     dat=open('C:/Users/tgrie/Desktop/3TM_results/Gadolinium/gdtemp.txt','r')
