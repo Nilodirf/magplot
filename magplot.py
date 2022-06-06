@@ -375,7 +375,7 @@ def dirplot(sample, offset, size, colors, ax, min, max, exc):
             t=np.array([offset+float(i.split()[0]) for i in vals[1:]])
             mask=t>50
             m=np.array([float(line.split()[1]) for line in vals[1:]])
-            ax.scatter(t,m, s=size, marker='o', color=colors[j+min-i+1], alpha=0.5)
+            ax.scatter(t,m, s=size, marker='o', color=colors[j+min-i], alpha=0.5)
     return
 
 def newfeplot(file):
@@ -543,7 +543,7 @@ def highflu(fsz, txtx):
     labeler(pics, [None, r'$M/M_0$', None, None, r'$T_p$', None])
 
     ##NICKEL MAG###
-    for i in range(0,5):
+    for i in range(0,6):
         pics[0].plot(ns[i][0], ns[i][1], color=colors[i], lw=3.0)
     dirplot('Nickel', 0.1, 10, colors, pics[0], 0, 6, [])
     #pics[0].annotate(r'758', (txtx, 0.975), fontsize=fsz, color=colors[2])
@@ -567,14 +567,14 @@ def highflu(fsz, txtx):
     counter=0
     for i in range(0,6):
         pics[2].plot(cs[i][0], cs[i][1], color=colors[i], lw=3.0)
-    dirplot('Cobalt', -0.09, 10, colors, pics[2], 2, 6, [])
+    dirplot('Cobalt', -0.09, 10, colors, pics[2], 0, 6, [])
     #pics[2].annotate(r'600', (txtx, 0.9), fontsize=fsz, color=colors[2])
     #pics[2].annotate(r'839', (txtx, 0.88), fontsize=fsz, color=colors[4])
     #pics[2].annotate(r'1078', (txtx, 0.86), fontsize=fsz, color=colors[6])
     #pics[2].annotate(r'$\frac{\rm{J}}{\rm{cm}^3}$', (txtx+0.45, 0.88), fontsize=fsz, color=(0,0,0))
 
     ###NICKEL TEMP###
-    pics[3].plot(ntc[0][0], ntc[1][1], color=colors[0], lw=3.0)
+    pics[3].plot(ntc[0][0], ntc[0][1], color=colors[0], lw=3.0)
     pics[3].plot(ntc[1][0], ntc[1][1], color=colors[2], lw=3.0)
     pics[3].plot(ntc[2][0], ntc[2][1], color=colors[4], lw=3.0)
     pics[3].plot(ntc[3][0], ntc[3][1], color=colors[6], lw=3.0)
