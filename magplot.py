@@ -545,7 +545,7 @@ def highflu(fsz, txtx):
     ##NICKEL MAG###
     for i in range(0,5):
         pics[0].plot(ns[i][0], ns[i][1], color=colors[i], lw=3.0)
-    dirplot('Nickel', 0.1, colors, pics[0], 0, 6, [])
+    dirplot('Nickel', 0.1, 10, colors, pics[0], 0, 6, [])
     #pics[0].annotate(r'758', (txtx, 0.975), fontsize=fsz, color=colors[2])
     #pics[0].annotate(r'915', (txtx, 0.9), fontsize=fsz, color=colors[4])
     #pics[0].annotate(r'1069', (txtx, 0.825), fontsize=fsz, color=colors[6])
@@ -556,7 +556,7 @@ def highflu(fsz, txtx):
     counter=0
     for i in range(0,6):
         pics[1].plot(fs[i][0], fs[i][1], color=colors[i], lw=3.0)
-    dirplot('Iron', 0.12, colors, pics[1], 0, 6, [])
+    dirplot('Iron', 0.12, 10, colors, pics[1], 0, 6, [])
     #pics[1].annotate(r'600', (txtx, 1), fontsize=fsz, color=colors[2])
     #pics[1].annotate(r'839', (txtx, 0.98), fontsize=fsz, color=colors[4])
     #pics[1].annotate(r'1078', (txtx, 0.96), fontsize=fsz, color=colors[6])
@@ -567,7 +567,7 @@ def highflu(fsz, txtx):
     counter=0
     for i in range(0,6):
         pics[2].plot(cs[i][0], cs[i][1], color=colors[i], lw=3.0)
-    dirplot('Cobalt', -0.09, colors, pics[2], 2, 6, [])
+    dirplot('Cobalt', -0.09, 10, colors, pics[2], 2, 6, [])
     #pics[2].annotate(r'600', (txtx, 0.9), fontsize=fsz, color=colors[2])
     #pics[2].annotate(r'839', (txtx, 0.88), fontsize=fsz, color=colors[4])
     #pics[2].annotate(r'1078', (txtx, 0.86), fontsize=fsz, color=colors[6])
@@ -623,7 +623,7 @@ def highflu(fsz, txtx):
     pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
     pics[5].set_ylim(260, 500)
 
-    fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/allflu.pdf')
+    #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/allflu.pdf')
 
 def energy(fs, col):
     fig, plots=plotter(10, 6, 2, 2, 0.03, 0.05, (-0.3,4), 0.1, 0, 0, [[3],[2]], [1,3])
@@ -860,8 +860,8 @@ def niplot(fs):
     
 #energy(17, color8)
 #koopmans(10)
-#highflu(16, 1.5)
-gadplot()
+highflu(16, 1.5)
+#gadplot()
 #niplot(17)
 
 plt.show()
