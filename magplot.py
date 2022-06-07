@@ -375,7 +375,7 @@ def dirplot(sample, offset, size, colors, ax, min, max, exc):
             t=np.array([offset+float(i.split()[0]) for i in vals[1:]])
             mask=t>50
             m=np.array([float(line.split()[1]) for line in vals[1:]])
-            ax.scatter(t,m, s=size, marker='o', color=colors[j+min-i], alpha=0.5)
+            ax.scatter(t,m, s=size, marker='o', color=colors[2*(j+min-i)], alpha=0.5)
     return
 
 def newfeplot(file):
@@ -537,14 +537,14 @@ def labeler(pics, ylabels):
 
 def highflu(fsz, txtx):
 
-    figure=plotter(6, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.1, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
+    figure=plotter(7, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
     fig=figure[0]
     pics=figure[1]
     labeler(pics, [None, r'$M/M_0$', None, None, r'$T_p$', None])
 
     ##NICKEL MAG###
     for i in range(0,6):
-        pics[0].plot(ns[i][0], ns[i][1], color=colors[i], lw=3.0)
+        pics[0].plot(ns[i][0], ns[i][1], color=colors[2*i], lw=3.0)
     dirplot('Nickel', 0.1, 10, colors, pics[0], 0, 6, [])
     #pics[0].annotate(r'758', (txtx, 0.975), fontsize=fsz, color=colors[2])
     #pics[0].annotate(r'915', (txtx, 0.9), fontsize=fsz, color=colors[4])
@@ -555,63 +555,74 @@ def highflu(fsz, txtx):
     ##IRON MAG###
     counter=0
     for i in range(0,6):
-        pics[1].plot(fs[i][0], fs[i][1], color=colors[i], lw=3.0)
+        pics[1].plot(fs[i][0], fs[i][1], color=colors[2*i], lw=3.0)
     dirplot('Iron', 0.12, 10, colors, pics[1], 0, 6, [])
     #pics[1].annotate(r'600', (txtx, 1), fontsize=fsz, color=colors[2])
     #pics[1].annotate(r'839', (txtx, 0.98), fontsize=fsz, color=colors[4])
     #pics[1].annotate(r'1078', (txtx, 0.96), fontsize=fsz, color=colors[6])
     #pics[1].annotate(r'$\frac{\rm{J}}{\rm{cm}^3}$', (txtx+0.45, 0.98), fontsize=fsz, color=(0,0,0))
     pics[1].set_ylabel(r'Norm. magnetization', fontsize=fsz)
+    pics[1].set_yticks([0.85, 0.9, 0.95, 1])
 
     ###COBALT MAG###
     counter=0
     for i in range(0,6):
-        pics[2].plot(cs[i][0], cs[i][1], color=colors[i], lw=3.0)
+        pics[2].plot(cs[i][0], cs[i][1], color=colors[2*i], lw=3.0)
     dirplot('Cobalt', -0.09, 10, colors, pics[2], 0, 6, [])
     #pics[2].annotate(r'600', (txtx, 0.9), fontsize=fsz, color=colors[2])
     #pics[2].annotate(r'839', (txtx, 0.88), fontsize=fsz, color=colors[4])
     #pics[2].annotate(r'1078', (txtx, 0.86), fontsize=fsz, color=colors[6])
     #pics[2].annotate(r'$\frac{\rm{J}}{\rm{cm}^3}$', (txtx+0.45, 0.88), fontsize=fsz, color=(0,0,0))
     pics[2].set_ylim(0.85, 1.01)
+    pics[2].set_yticks([0.9, 0.95, 1])
 
     ###NICKEL TEMP###
     pics[3].plot(ntc[0][0], ntc[0][1], color=colors[0], lw=3.0)
-    pics[3].plot(ntc[1][0], ntc[1][1], color=colors[2], lw=3.0)
-    pics[3].plot(ntc[2][0], ntc[2][1], color=colors[4], lw=3.0)
-    pics[3].plot(ntc[3][0], ntc[3][1], color=colors[6], lw=3.0)
-    pics[3].scatter(np.array(n1td[0]), n1td[1], color=colors[0], s=10)
-    pics[3].scatter(n2td[0], n2td[1], color=colors[2], s=10)
-    pics[3].scatter(n3td[0]+0.02, n3td[1], color=colors[4], s=10)
-    pics[3].scatter(n4td[0]+0.02, n4td[1], color=colors[6], s=10)
-    pics[3].annotate(r'Nickel', (0, 410), fontsize=16, color=(0,0,0))
+    pics[3].plot(ntc[1][0], ntc[1][1], color=colors[1], lw=3.0)
+    pics[3].plot(ntc[2][0], ntc[2][1], color=colors[2], lw=3.0)
+    pics[3].plot(ntc[3][0], ntc[3][1], color=colors[3], lw=3.0)
+    pics[3].scatter(n1td[0], n1td[1], color=colors[0], s=10)
+    pics[3].scatter(n2td[0], n2td[1], color=colors[1], s=10)
+    pics[3].scatter(n3td[0]+0.09, n3td[1], color=colors[2], s=10)
+    pics[3].scatter(n4td[0]+0.09, n4td[1], color=colors[3], s=10)
+    pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
     pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
+    pics[3].set_ylim(bottom=290)
 
     ###IRON TEMP###
-    pics[4].plot(ftc[0][0],ftc[0][1], color=colors[0], lw=3.0)
-    pics[4].plot(ftc[1][0],ftc[1][1], color=colors[2], lw=3.0)
+    pics[4].plot(ftc[0][0],ftc[0][1], color=colors[1], lw=3.0)
+    pics[4].plot(ftc[1][0],ftc[1][1], color=colors[3], lw=3.0)
     pics[4].plot(ftc[2][0],ftc[2][1], color=colors[4], lw=3.0)
-    pics[4].plot(ftc[3][0],ftc[3][1], color=colors[6], lw=3.0)
-    pics[4].scatter(np.array(f1td[0])-0.15,f1td[1], s=10, color=colors[0])
-    pics[4].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[2])
+    pics[4].plot(ftc[3][0],ftc[3][1], color=colors[9], lw=3.0)
+    pics[4].scatter(np.array(f1td[0])-0.15,f1td[1], s=10, color=colors[1])
+    pics[4].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[3])
     pics[4].scatter(np.array(f3td[0])-0.12,f3td[1], s=10, color=colors[4])
-    pics[4].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[6])
+    pics[4].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[9])
     pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
     pics[4].set_ylabel(r'Lattice temperature [K]', fontsize=fsz)
-    pics[4].set_ylim(250, 530)
+    pics[4].set_ylim(290, 530)
 
     ###COBALT TEMP###
-    pics[5].plot(ctc[0][0], ctc[0][1], color=colors[0], lw=3.0)
+    pics[5].plot(ctc[0][0], ctc[0][1], color=colors[1], lw=3.0)
     pics[5].plot(ctc[1][0], ctc[1][1], color=colors[2], lw=3.0)
     pics[5].plot(ctc[2][0], ctc[2][1], color=colors[4], lw=3.0)
     pics[5].plot(ctc[3][0], ctc[3][1], color=colors[6], lw=3.0)
-    pics[5].scatter(np.array(c1td[0])-0.1, c1td[1], s=10, color=colors[0])
+    pics[5].scatter(np.array(c1td[0])-0.1, c1td[1], s=10, color=colors[1])
     pics[5].scatter(np.array(c2td[0])-0.1, c2td[1], s=10, color=colors[2])
     pics[5].scatter(np.array(c3td[0])-0.1, c3td[1], s=10, color=colors[4])
     pics[5].scatter(np.array(c4td[0])-0.1, c4td[1], s=10, color=colors[6])
     pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
-    pics[5].set_ylim(260, 500)
+    pics[5].set_ylim(290, 500)
 
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/allflu.pdf')
+
+    pics[2].annotate(r'(a)', (-0.05,0.86), fontsize=16)
+    pics[1].annotate(r'(c)', (-0.05,0.86), fontsize=16)
+    pics[0].annotate(r'(e)', (-0.05,0.25), fontsize=16)
+
+    pics[5].annotate(r'(b)', (-0.05,425), fontsize=16)
+    pics[4].annotate(r'(d)', (-0.05,440), fontsize=16)
+    pics[3].annotate(r'(f)', (-0.05,390), fontsize=16)
 
 def energy(fs, col):
     fig, plots=plotter(10, 6, 2, 2, 0.03, 0.05, (-0.3,4), 0.1, 0, 0, [[3],[2]], [1,3])
