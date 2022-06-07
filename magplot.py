@@ -363,7 +363,7 @@ def tepplot():
 
 
 def dirplot(sample, offset, size, colors, ax, min, max, exc):
-    path= 'C:/Users/tgrie/Desktop/3TM_results/MOKE_Unai/' + str(sample)
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/MOKE_Unai/') + str(sample)
     files=os.listdir(path)
     i=0
     for  j, file in enumerate(files[min:max]):
@@ -401,7 +401,7 @@ def ellrot(g):
     return(trot-g*tell/(1-g))
 
 def eldyn():
-    dat=open('C:/Users/tgrie/Desktop/3TM_results/Nickel/electrons/Tengdin_data.txt','r')
+    dat=open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Nickel/electrons/Tengdin_data.txt'),'r')
     vals=dat.readlines()
     x=np.array([float(i.split()[0])*1e-3 for i in vals[2:]])
     y=np.array([float(line.split()[1]) for line in vals[2:]])
@@ -410,7 +410,7 @@ def eldyn():
 nit=eldyn()
 
 def lattdyn(file):
-    f=open('C:/Users/tgrie/Desktop/3TM_results/lattice/' + str(file),'r')
+    f=open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/lattice/') + str(file),'r')
     fr=f.readlines()
     if file.startswith('F'):
         fn=[line for line in fr if not line.startswith('#')]
