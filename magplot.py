@@ -585,7 +585,7 @@ def highflu(fsz, txtx):
     pics[3].scatter(n2td[0], n2td[1], color=colors[1], s=10)
     pics[3].scatter(n3td[0]+0.09, n3td[1], color=colors[2], s=10)
     pics[3].scatter(n4td[0]+0.09, n4td[1], color=colors[3], s=10)
-    pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
+    #pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
     pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
     pics[3].set_ylim(bottom=290)
 
@@ -598,7 +598,7 @@ def highflu(fsz, txtx):
     pics[4].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[3])
     pics[4].scatter(np.array(f3td[0])-0.12,f3td[1], s=10, color=colors[4])
     pics[4].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[9])
-    pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
+    #pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
     pics[4].set_ylabel(r'Lattice temperature [K]', fontsize=fsz)
     pics[4].set_ylim(290, 530)
 
@@ -611,7 +611,7 @@ def highflu(fsz, txtx):
     pics[5].scatter(np.array(c2td[0])-0.1, c2td[1], s=10, color=colors[2])
     pics[5].scatter(np.array(c3td[0])-0.1, c3td[1], s=10, color=colors[4])
     pics[5].scatter(np.array(c4td[0])-0.1, c4td[1], s=10, color=colors[6])
-    pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
+    #pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
     pics[5].set_ylim(290, 500)
 
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/allflu.pdf')
@@ -620,9 +620,9 @@ def highflu(fsz, txtx):
     pics[1].annotate(r'(c)', (-0.05,0.86), fontsize=16)
     pics[0].annotate(r'(e)', (-0.05,0.25), fontsize=16)
 
-    pics[5].annotate(r'(b)', (-0.05,425), fontsize=16)
-    pics[4].annotate(r'(d)', (-0.05,440), fontsize=16)
-    pics[3].annotate(r'(f)', (-0.05,390), fontsize=16)
+    pics[5].annotate(r'(b)', (-0.05,460), fontsize=16)
+    pics[4].annotate(r'(d)', (-0.05,490), fontsize=16)
+    pics[3].annotate(r'(f)', (-0.05,420), fontsize=16)
 
 def energy(fs, col):
     fig, plots=plotter(10, 6, 2, 2, 0.03, 0.05, (-0.3,4), 0.1, 0, 0, [[3],[2]], [1,3])
