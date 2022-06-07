@@ -537,7 +537,7 @@ def labeler(pics, ylabels):
 
 def highflu(fsz, txtx):
 
-    figure=plotter(7, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
+    figure=plotter(8, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
     fig=figure[0]
     pics=figure[1]
     labeler(pics, [None, r'$M/M_0$', None, None, r'$T_p$', None])
