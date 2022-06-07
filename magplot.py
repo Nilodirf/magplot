@@ -577,12 +577,12 @@ def highflu(fsz, txtx):
     ###NICKEL TEMP###
     pics[3].plot(ntc[0][0], ntc[0][1], color=colors[0], lw=3.0)
     pics[3].plot(ntc[1][0], ntc[1][1], color=colors[2], lw=3.0)
-    pics[3].plot(ntc[2][0]+0.02, ntc[2][1], color=colors[4], lw=3.0)
-    pics[3].plot(ntc[3][0]+0.02, ntc[3][1], color=colors[6], lw=3.0)
+    pics[3].plot(ntc[2][0], ntc[2][1], color=colors[4], lw=3.0)
+    pics[3].plot(ntc[3][0], ntc[3][1], color=colors[6], lw=3.0)
     pics[3].scatter(np.array(n1td[0]), n1td[1], color=colors[0], s=10)
     pics[3].scatter(n2td[0], n2td[1], color=colors[2], s=10)
-    pics[3].scatter(n3td[0], n3td[1], color=colors[4], s=10)
-    pics[3].scatter(n4td[0], n4td[1], color=colors[6], s=10)
+    pics[3].scatter(n3td[0]+0.02, n3td[1], color=colors[4], s=10)
+    pics[3].scatter(n4td[0]+0.02, n4td[1], color=colors[6], s=10)
     pics[3].annotate(r'Nickel', (0, 410), fontsize=16, color=(0,0,0))
     pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
 
