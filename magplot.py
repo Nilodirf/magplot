@@ -462,7 +462,7 @@ def convolute(sig, dat):  #sig in ps
             conv.append(tp[i])
         else:
             conv.append(np.sum(dt*gaussian*[tp[int(i-tau/dt)] for tau in trange]))
-    return(time[:1500], conv[:1500])
+    return(np.array(time[:1500]), np.array(conv[:1500]))
 
 n1tc=convolute(0.065, n1t)
 n2tc=convolute(0.065, n2t)
@@ -572,17 +572,18 @@ def highflu(fsz, txtx):
     #pics[2].annotate(r'839', (txtx, 0.88), fontsize=fsz, color=colors[4])
     #pics[2].annotate(r'1078', (txtx, 0.86), fontsize=fsz, color=colors[6])
     #pics[2].annotate(r'$\frac{\rm{J}}{\rm{cm}^3}$', (txtx+0.45, 0.88), fontsize=fsz, color=(0,0,0))
+    pics[2].set_ylim(0.85, 1.01)
 
     ###NICKEL TEMP###
     pics[3].plot(ntc[0][0], ntc[0][1], color=colors[0], lw=3.0)
     pics[3].plot(ntc[1][0], ntc[1][1], color=colors[2], lw=3.0)
-    pics[3].plot(ntc[2][0], ntc[2][1], color=colors[4], lw=3.0)
-    pics[3].plot(ntc[3][0], ntc[3][1], color=colors[6], lw=3.0)
+    pics[3].plot(ntc[2][0]+0.02, ntc[2][1], color=colors[4], lw=3.0)
+    pics[3].plot(ntc[3][0]+0.02, ntc[3][1], color=colors[6], lw=3.0)
     pics[3].scatter(np.array(n1td[0]), n1td[1], color=colors[0], s=10)
     pics[3].scatter(n2td[0], n2td[1], color=colors[2], s=10)
     pics[3].scatter(n3td[0], n3td[1], color=colors[4], s=10)
     pics[3].scatter(n4td[0], n4td[1], color=colors[6], s=10)
-    pics[3].annotate(r'Nickel', (0, 500), fontsize=16, color=(0,0,0))
+    pics[3].annotate(r'Nickel', (0, 410), fontsize=16, color=(0,0,0))
     pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
 
     ###IRON TEMP###
@@ -593,7 +594,7 @@ def highflu(fsz, txtx):
     pics[4].scatter(np.array(f1td[0])-0.15,f1td[1], s=10, color=colors[0])
     pics[4].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[2])
     pics[4].scatter(np.array(f3td[0])-0.12,f3td[1], s=10, color=colors[4])
-    pics[4].scatter(np.array(f4td[0])-0.12,f4td[1], s=10, color=colors[6])
+    pics[4].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[6])
     pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
     pics[4].set_ylabel(r'Lattice temperature [K]', fontsize=fsz)
     pics[4].set_ylim(250, 530)
