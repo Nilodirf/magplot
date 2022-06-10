@@ -764,7 +764,6 @@ def gadplot():
     g4b=ownplot('Gadolinium/sim9.3b.dat', 'mag')
     g5=ownplot('Gadolinium/sim11.2.dat', 'mag')
     g5b=ownplot('Gadolinium/sim11.2b.dat', 'mag')
-    #g2ot=ownplot('Gadolinium/sim7.4_other.dat', 'mag')
 
     gt=ownplot('Gadolinium/temp.dat', 'tem')
     #gtps=ownplot('Gadolinium/temp_gps.dat', 'tem')
@@ -785,6 +784,13 @@ def gadplot():
     plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
     plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
     plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[9])
+    plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
+
+    plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=colors[11])
+    plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=colors[11])
+    plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=colors[11])
+    plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=colors[11])
+    plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[11])
     plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
 
     #READ exp temp data#
@@ -859,8 +865,8 @@ def niplot(fs):
     
 #energy(17, color8)
 #koopmans(10)
-highflu(16, 1.5)
-#gadplot()
+#highflu(16, 1.5)
+gadplot()
 #niplot(17)
 
 plt.show()
