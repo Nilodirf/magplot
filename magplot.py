@@ -772,12 +772,12 @@ def gadplot():
     #gtasf=ownplot('Gadolinium/temp_cehasfh.dat', 'tem')
 
     #PLOT exp mag data#
-    plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
-    plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
-    plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
-    plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
-    plots[0].scatter(dat4[0]+0.1, dat4[1], s=40, marker='o', color=colors[9])
-    plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
+    #plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
+    #plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
+    #plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
+    #plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
+    #plots[0].scatter(dat4[0]+0.1, dat4[1], s=40, marker='o', color=colors[9])
+    #plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
 
     #PLOT sim mag data#
     plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=color1)
