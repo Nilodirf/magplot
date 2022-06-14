@@ -754,6 +754,7 @@ def gadplot():
 
     #READ sim data#
     g0=ownplot('Gadolinium/sim1.9.dat', 'mag')
+    g0b=ownplot('Gadolinium/sim1.9b.dat', 'mag')
     g1=ownplot('Gadolinium/sim3.7.dat', 'mag')
     g1b=ownplot('Gadolinium/sim3.7b.dat', 'mag')
     g2=ownplot('Gadolinium/sim5.6.dat', 'mag')
@@ -780,18 +781,17 @@ def gadplot():
 
     #PLOT sim mag data#
     plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=color1)
+    plots[0].plot(g0b[0]-30, g0b[1]/0.948, lw=3.0, color=color1, linestyle='dashed')
     plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=color4)
+    plots[0].plot(g1b[0]-30, g1b[1]/0.948, lw=3.0, color=color4, linestyle='dashed')
     plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
+    plots[0].plot(g2b[0]-30, g2b[1]/0.948, lw=3.0, color=color6, linestyle='dashed')
     plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
+    plots[0].plot(g3b[0]-30, g3b[1]/0.948, lw=3.0, color=color8, linestyle='dashed')
     plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[9])
+    plots[0].plot(g4b[0]-30, g4b[1]/0.948, lw=3.0, color=colors[9], linestyle='dashed')
     plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
-
-    plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=colors[11])
-    plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=colors[11])
-    plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=colors[11])
-    plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=colors[11])
-    plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[11])
-    plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
+    plots[0].plot(g5b[0]-30, g5b[1]/0.948, lw=3.0, color=colors[11], linestyle='dashed')
 
     #READ exp temp data#
     dat=open('C:/Users/tgrie/Desktop/3TM_results/Gadolinium/gdtemp.txt','r')
@@ -812,7 +812,7 @@ def gadplot():
     #modify plot#
     plots[0].set_xlabel(r'delay [ps]')
     plots[0].set_ylabel(r'Normalized magnetization')
-    #plots[0].set_xscale('log')
+    plots[0].set_xscale('log')
 
     plots[1].set_ylabel(r'Electron temperature [K]')
     plots[1].set_xlabel(r'delay [ps]')
