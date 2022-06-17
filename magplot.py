@@ -864,14 +864,13 @@ def niplot(fs):
     #plt.xscale('log')
 
 def gadsd():
-    fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-50, 50), 0.2, 0, 0, [[0],[1]], [])
+    fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-10, 30), 0.2, 0, 0, [[0],[1]], [])
         
-    locmag=ownplot('Gadolinium/sd/test.dat', 'mag')
-    loctem=ownplot('Gadolinium/sd/test.dat', 'tem')
+    sd1smag=ownplot('Gadolinium/sd/sdrate0s.dat', 'mag')
+    sd1stem=ownplot('Gadolinium/sd/sdrate0s.dat', 'tem')
 
-    pics[0].plot(locmag[0], locmag[1])
-    pics[1].plot(loctem[0], loctem[1])
-    pics[1].plot(loctem[0], loctem[2])
+    pics[0].plot(sd1smag[0], sd1smag[1])
+    pics[1].plot(sd1stem[0], sd1stem[1])
 
     plt.show()
     
