@@ -537,7 +537,7 @@ def labeler(pics, ylabels):
 
 def highflu(fsz, txtx):
 
-    figure=plotter(7, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
+    figure=plotter(8, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
     fig=figure[0]
     pics=figure[1]
     labeler(pics, [None, r'$M/M_0$', None, None, r'$T_p$', None])
@@ -585,7 +585,7 @@ def highflu(fsz, txtx):
     pics[3].scatter(n2td[0], n2td[1], color=colors[1], s=10)
     pics[3].scatter(n3td[0]+0.09, n3td[1], color=colors[2], s=10)
     pics[3].scatter(n4td[0]+0.09, n4td[1], color=colors[3], s=10)
-    pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
+    #pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
     pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
     pics[3].set_ylim(bottom=290)
 
@@ -598,7 +598,7 @@ def highflu(fsz, txtx):
     pics[4].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[3])
     pics[4].scatter(np.array(f3td[0])-0.12,f3td[1], s=10, color=colors[4])
     pics[4].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[9])
-    pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
+    #pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
     pics[4].set_ylabel(r'Lattice temperature [K]', fontsize=fsz)
     pics[4].set_ylim(290, 530)
 
@@ -611,7 +611,7 @@ def highflu(fsz, txtx):
     pics[5].scatter(np.array(c2td[0])-0.1, c2td[1], s=10, color=colors[2])
     pics[5].scatter(np.array(c3td[0])-0.1, c3td[1], s=10, color=colors[4])
     pics[5].scatter(np.array(c4td[0])-0.1, c4td[1], s=10, color=colors[6])
-    pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
+    #pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
     pics[5].set_ylim(290, 500)
 
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/allflu.pdf')
@@ -620,9 +620,9 @@ def highflu(fsz, txtx):
     pics[1].annotate(r'(c)', (-0.05,0.86), fontsize=16)
     pics[0].annotate(r'(e)', (-0.05,0.25), fontsize=16)
 
-    pics[5].annotate(r'(b)', (-0.05,425), fontsize=16)
-    pics[4].annotate(r'(d)', (-0.05,440), fontsize=16)
-    pics[3].annotate(r'(f)', (-0.05,390), fontsize=16)
+    pics[5].annotate(r'(b)', (-0.05,460), fontsize=16)
+    pics[4].annotate(r'(d)', (-0.05,490), fontsize=16)
+    pics[3].annotate(r'(f)', (-0.05,420), fontsize=16)
 
 def energy(fs, col):
     fig, plots=plotter(10, 6, 2, 2, 0.03, 0.05, (-0.3,4), 0.1, 0, 0, [[3],[2]], [1,3])
@@ -754,6 +754,7 @@ def gadplot():
 
     #READ sim data#
     g0=ownplot('Gadolinium/sim1.9.dat', 'mag')
+    g0b=ownplot('Gadolinium/sim1.9b.dat', 'mag')
     g1=ownplot('Gadolinium/sim3.7.dat', 'mag')
     g1b=ownplot('Gadolinium/sim3.7b.dat', 'mag')
     g2=ownplot('Gadolinium/sim5.6.dat', 'mag')
@@ -764,7 +765,6 @@ def gadplot():
     g4b=ownplot('Gadolinium/sim9.3b.dat', 'mag')
     g5=ownplot('Gadolinium/sim11.2.dat', 'mag')
     g5b=ownplot('Gadolinium/sim11.2b.dat', 'mag')
-    #g2ot=ownplot('Gadolinium/sim7.4_other.dat', 'mag')
 
     gt=ownplot('Gadolinium/temp.dat', 'tem')
     #gtps=ownplot('Gadolinium/temp_gps.dat', 'tem')
@@ -772,20 +772,26 @@ def gadplot():
     #gtasf=ownplot('Gadolinium/temp_cehasfh.dat', 'tem')
 
     #PLOT exp mag data#
-    plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
-    plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
-    plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
-    plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
-    plots[0].scatter(dat4[0]+0.1, dat4[1], s=40, marker='o', color=colors[9])
-    plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
+    #plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
+    #plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
+    #plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
+    #plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
+    #plots[0].scatter(dat4[0]+0.1, dat4[1], s=40, marker='o', color=colors[9])
+    #plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
 
     #PLOT sim mag data#
     plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=color1)
+    plots[0].plot(g0b[0]-30, g0b[1]/0.948, lw=3.0, color=color1, linestyle='dashed')
     plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=color4)
+    plots[0].plot(g1b[0]-30, g1b[1]/0.948, lw=3.0, color=color4, linestyle='dashed')
     plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
+    plots[0].plot(g2b[0]-30, g2b[1]/0.948, lw=3.0, color=color6, linestyle='dashed')
     plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
+    plots[0].plot(g3b[0]-30, g3b[1]/0.948, lw=3.0, color=color8, linestyle='dashed')
     plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[9])
+    plots[0].plot(g4b[0]-30, g4b[1]/0.948, lw=3.0, color=colors[9], linestyle='dashed')
     plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
+    plots[0].plot(g5b[0]-30, g5b[1]/0.948, lw=3.0, color=colors[11], linestyle='dashed')
 
     #READ exp temp data#
     dat=open('C:/Users/tgrie/Desktop/3TM_results/Gadolinium/gdtemp.txt','r')
@@ -806,7 +812,7 @@ def gadplot():
     #modify plot#
     plots[0].set_xlabel(r'delay [ps]')
     plots[0].set_ylabel(r'Normalized magnetization')
-    #plots[0].set_xscale('log')
+    plots[0].set_xscale('log')
 
     plots[1].set_ylabel(r'Electron temperature [K]')
     plots[1].set_xlabel(r'delay [ps]')
