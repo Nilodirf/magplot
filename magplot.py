@@ -527,7 +527,8 @@ def plotter(x, y, xnum, ynum, xdist, ydist, trange, xmin, xtra, ytra, sharex, hi
                 pic.sharex(subs[sharex[1][0]])
             if i in hidex:
                 plt.setp(subs[i].get_xticklabels(), visible=False)
-    subs[xtra+sharex[1][0]].set_xlim(trange)
+    if sharex[1] !=[]:
+        subs[xtra+sharex[1][0]].set_xlim(trange)
     return(fig, subs)
 
 def labeler(pics, ylabels):
@@ -862,17 +863,17 @@ def niplot(fs):
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/Nickel.pdf')
     #plt.xscale('log')
 
-    def gadsd():
-        fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-0.1, 2.5), 0.2, 0, 0, [], [])
+def gadsd():
+    fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-50, 50), 0.2, 0, 0, [[0],[1]], [])
         
-        locmag=ownplot('Gadolinium/sd/test.dat', 'mag')
-        loctem=ownplot('Gadolinium/sd/test.dat', 'tem')
+    locmag=ownplot('Gadolinium/sd/test.dat', 'mag')
+    loctem=ownplot('Gadolinium/sd/test.dat', 'tem')
 
-        pics[0].plot(locmag[0], locmag[1])
-        pics[1].plot(loctem[0], loctem[1])
-        pics[1].plot(loctem[0], loctem[2])
+    pics[0].plot(locmag[0], locmag[1])
+    pics[1].plot(loctem[0], loctem[1])
+    pics[1].plot(loctem[0], loctem[2])
 
-        plt.show()
+    plt.show()
     
 #energy(17, color8)
 #koopmans(10)
