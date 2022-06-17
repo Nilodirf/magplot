@@ -866,11 +866,26 @@ def niplot(fs):
 def gadsd():
     fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-10, 30), 0.2, 0, 0, [[0],[1]], [])
         
-    sd1smag=ownplot('Gadolinium/sd/sdrate0s.dat', 'mag')
-    sd1stem=ownplot('Gadolinium/sd/sdrate0s.dat', 'tem')
+    sd0sm=ownplot('Gadolinium/sd/sdrate0s.dat', 'mag')
+    sd0st=ownplot('Gadolinium/sd/sdrate0s.dat', 'tem')
 
-    pics[0].plot(sd1smag[0], sd1smag[1])
-    pics[1].plot(sd1stem[0], sd1stem[1])
+    sd10m=ownplot('Gadolinium/sd/sdrate10ps.dat', 'mag')
+    sd10t=ownplot('Gadolinium/sd/sdrate10ps.dat', 'tem')
+
+    sd100m=ownplot('Gadolinium/sd/sdrate100ps.dat', 'mag')
+    sd100t=ownplot('Gadolinium/sd/sdrate100ps.dat', 'tem')
+
+
+
+    pics[0].plot(sd0sm[0], sd0sm[1])
+    pics[1].plot(sd0st[0], sd0st[1])
+
+    pics[0].plot(sd10m[0], sd10m[1])
+    pics[1].plot(sd10t[0], sd10t[1])
+
+    pics[0].plot(sd100m[0], sd100m[1])
+    pics[1].plot(sd100t[0], sd100t[1])
+
 
     plt.show()
     
