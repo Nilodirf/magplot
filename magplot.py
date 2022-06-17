@@ -856,11 +856,23 @@ def niplot(fs):
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/Nickel.pdf')
     #plt.xscale('log')
 
+    def gadsd():
+        fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-0.1, 2.5), 0.2, 0, 0, [], [])
+        
+        locmag=ownplot('Gadolinium/sd/test.dat', 'mag')
+        loctem=ownplot('Gadolinium/sd/test.dat', 'tem')
+
+        pics[0].plot(locmag[0], locmag[1])
+        pics[1].plot(loctem[0], loctem[1])
+        pics[1].plot(loctem[0], loctem[2])
+
+        plt.show()
     
 #energy(17, color8)
 #koopmans(10)
-highflu(16, 1.5)
+#highflu(16, 1.5)
 #gadplot()
 #niplot(17)
+gadsd()
 
 plt.show()
