@@ -85,7 +85,9 @@ def ownplot(datei, tom):
         es=np.array([-float(line[7]) for line in columns])
         return(times, et, ee, ep, es)
     return
-    
+  
+
+
 n1=ownplot('Nickel/c1.dat', 'mag')
 n2=ownplot('Nickel/c2.dat', 'mag')
 n3=ownplot('Nickel/c3.dat', 'mag')
@@ -117,11 +119,6 @@ c8=ownplot('Cobalt/c8.dat', 'mag')
 c9=ownplot('Cobalt/c9.dat', 'mag')
 cs=[c1,c2,c3,c4,c5,c6,c7,c8,c9]
 
-cen=ownplot('Cobalt/lattice/530.dat', 'en')
-cennoq=ownplot('Cobalt/lattice/530_noq.dat', 'en')
-cennoqad=ownplot('Cobalt/lattice/530_noqad.dat', 'en')
-cnoqt=ownplot('Cobalt/lattice/530_noq.dat', 'tem')
-cnoqtad=ownplot('Cobalt/lattice/530_noqad.dat', 'tem')
 
 n1t=ownplot('Nickel/lattice/f1.dat', 'tem')
 n2t=ownplot('Nickel/lattice/f2.dat', 'tem')
@@ -484,9 +481,6 @@ c3tc=convolute(0.106, c3t)
 c4tc=convolute(0.106, c4t)
 ctc=[c1tc, c2tc, c3tc, c4tc]
 
-cnoqtc=convolute(0.106, cnoqt)
-cnoqtadc=convolute(0.106, cnoqtad)
-n3noqtc=convolute(0.065, n3noqt)
 
 #fe_ex=ownplot('Iron/c5.dat', 'mag', green, 1, 'solid', 'bla')
 #fe_ex_2=ownplot('Iron/lattice/c5_0.dat', 'mag' , green, 1, 'solid', 'bla')
@@ -888,12 +882,41 @@ def gadsd():
 
 
     plt.show()
+
+
+def sdplot():
+    fig, pics=plotter(8,6, 1, 1, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[]], [])
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/sd')
+    files=os.listdir(path)
+    dat=[]
+
+    for j,file in enumerate(files):
+        dat.append(ownplot('Gadolinium/sd/' + str(file), 'mag'))
+        pics[0].plot(dat[j][0], dat[j][1], label=str(file))
     
+    #plt.legend()
+    plt.show()
+
+def gadrate():
+    fig, pics=plotter(8,6, 1, 1, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[]], [])
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/initempS72')
+    files=os.listdir(path)
+    dat=[]
+
+    for j,file in enumerate(files):
+        dat.append(ownplot('Gadolinium/initempS72/' + str(file), 'mag'))
+        pics[0].plot(dat[j][0], dat[j][1], label=str(file))
+
+    #plt.legend()
+    plt.show()
+
+
 #energy(17, color8)
 #koopmans(10)
 #highflu(16, 1.5)
 #gadplot()
 #niplot(17)
-gadsd()
+sdplot()
+#gadrate()
 
 plt.show()
