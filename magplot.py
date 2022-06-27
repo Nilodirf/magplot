@@ -500,7 +500,7 @@ def interpol(file):
     fit=ipl.interp1d(t,y)
     return(fit)
 
-def plotter(x, y, xnum, ynum, xdist, ydist, trange, xmin, xtra, ytra, sharex, hidex):
+def plotter(x: object, y: object, xnum: object, ynum: object, xdist: object, ydist: object, trange: object, xmin: object, xtra: object, ytra: object, sharex: object, hidex: object) -> object:
 
     fig=plt.figure(figsize=(x,y))
     dx=(1-2*xmin-(xnum+ytra-1)*xdist)/(xnum+ytra)
@@ -532,20 +532,20 @@ def labeler(pics, ylabels):
 
 def highflu(fsz, txtx):
 
-    figure=plotter(8, 9, 2, 3, 0.05, 0.05, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,2,4,5])
+    figure=plotter(8, 5, 2, 2, 0.05, 0.1, (-0.1,2.4), 0.12, 0, 0, [[1,2,3,4,5],[0]], [1,3])
     fig=figure[0]
     pics=figure[1]
     labeler(pics, [None, r'$M/M_0$', None, None, r'$T_p$', None])
 
     ##NICKEL MAG###
-    for i in range(0,6):
-        pics[0].plot(ns[i][0], ns[i][1], color=colors[2*i], lw=3.0)
-    dirplot('Nickel', 0.1, 10, colors, pics[0], 0, 6, [])
+    #for i in range(0,6):
+    #    pics[0].plot(ns[i][0], ns[i][1], color=colors[2*i], lw=3.0)
+    #dirplot('Nickel', 0.1, 10, colors, pics[0], 0, 6, [])
     #pics[0].annotate(r'758', (txtx, 0.975), fontsize=fsz, color=colors[2])
     #pics[0].annotate(r'915', (txtx, 0.9), fontsize=fsz, color=colors[4])
     #pics[0].annotate(r'1069', (txtx, 0.825), fontsize=fsz, color=colors[6])
     #pics[0].annotate(r'$\frac{\rm{J}}{\rm{cm}^3}$', (txtx+0.45, 0.9), fontsize=fsz, color=(0,0,0))
-    pics[0].set_xlabel(r'delay [ps]', fontsize=fsz)
+    #pics[0].set_xlabel(r'delay [ps]', fontsize=fsz)
 
     ##IRON MAG###
     counter=0
@@ -562,62 +562,62 @@ def highflu(fsz, txtx):
     ###COBALT MAG###
     counter=0
     for i in range(0,6):
-        pics[2].plot(cs[i][0], cs[i][1], color=colors[2*i], lw=3.0)
-    dirplot('Cobalt', -0.09, 10, colors, pics[2], 0, 6, [])
+        pics[0].plot(cs[i][0], cs[i][1], color=colors[2*i], lw=3.0)
+    dirplot('Cobalt', -0.09, 10, colors, pics[0], 0, 6, [])
     #pics[2].annotate(r'600', (txtx, 0.9), fontsize=fsz, color=colors[2])
     #pics[2].annotate(r'839', (txtx, 0.88), fontsize=fsz, color=colors[4])
     #pics[2].annotate(r'1078', (txtx, 0.86), fontsize=fsz, color=colors[6])
     #pics[2].annotate(r'$\frac{\rm{J}}{\rm{cm}^3}$', (txtx+0.45, 0.88), fontsize=fsz, color=(0,0,0))
-    pics[2].set_ylim(0.85, 1.01)
-    pics[2].set_yticks([0.9, 0.95, 1])
+    pics[0].set_ylim(0.85, 1.01)
+    pics[0].set_yticks([0.9, 0.95, 1])
 
     ###NICKEL TEMP###
-    pics[3].plot(ntc[0][0], ntc[0][1], color=colors[0], lw=3.0)
-    pics[3].plot(ntc[1][0], ntc[1][1], color=colors[1], lw=3.0)
-    pics[3].plot(ntc[2][0], ntc[2][1], color=colors[2], lw=3.0)
-    pics[3].plot(ntc[3][0], ntc[3][1], color=colors[3], lw=3.0)
-    pics[3].scatter(n1td[0], n1td[1], color=colors[0], s=10)
-    pics[3].scatter(n2td[0], n2td[1], color=colors[1], s=10)
-    pics[3].scatter(n3td[0]+0.09, n3td[1], color=colors[2], s=10)
-    pics[3].scatter(n4td[0]+0.09, n4td[1], color=colors[3], s=10)
-    #pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
-    pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
-    pics[3].set_ylim(bottom=290)
+    #pics[3].plot(ntc[0][0], ntc[0][1], color=colors[0], lw=3.0)
+    #pics[3].plot(ntc[1][0], ntc[1][1], color=colors[1], lw=3.0)
+    #pics[3].plot(ntc[2][0], ntc[2][1], color=colors[2], lw=3.0)
+    #pics[3].plot(ntc[3][0], ntc[3][1], color=colors[3], lw=3.0)
+    #pics[3].scatter(n1td[0], n1td[1], color=colors[0], s=10)
+    #pics[3].scatter(n2td[0], n2td[1], color=colors[1], s=10)
+    #pics[3].scatter(n3td[0]+0.09, n3td[1], color=colors[2], s=10)
+    #pics[3].scatter(n4td[0]+0.09, n4td[1], color=colors[3], s=10)
+    ##pics[3].annotate(r'Nickel', (0, 420), fontsize=16, color=(0,0,0))
+    #pics[3].set_xlabel(r'delay [ps]', fontsize=fsz)
+    #pics[3].set_ylim(bottom=290)
 
     ###IRON TEMP###
-    pics[4].plot(ftc[0][0],ftc[0][1], color=colors[1], lw=3.0)
-    pics[4].plot(ftc[1][0],ftc[1][1], color=colors[3], lw=3.0)
-    pics[4].plot(ftc[2][0],ftc[2][1], color=colors[4], lw=3.0)
-    pics[4].plot(ftc[3][0],ftc[3][1], color=colors[9], lw=3.0)
-    pics[4].scatter(np.array(f1td[0])-0.15,f1td[1], s=10, color=colors[1])
-    pics[4].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[3])
-    pics[4].scatter(np.array(f3td[0])-0.12,f3td[1], s=10, color=colors[4])
-    pics[4].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[9])
-    #pics[4].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
-    pics[4].set_ylabel(r'Lattice temperature [K]', fontsize=fsz)
-    pics[4].set_ylim(290, 530)
+    pics[3].plot(ftc[0][0],ftc[0][1], color=colors[1], lw=3.0)
+    pics[3].plot(ftc[1][0],ftc[1][1], color=colors[3], lw=3.0)
+    pics[3].plot(ftc[2][0],ftc[2][1], color=colors[4], lw=3.0)
+    pics[3].plot(ftc[3][0],ftc[3][1], color=colors[9], lw=3.0)
+    pics[3].scatter(np.array(f1td[0])-0.15,f1td[1], s=10, color=colors[1])
+    pics[3].scatter(np.array(f2td[0])-0.1,f2td[1], s=10, color=colors[3])
+    pics[3].scatter(np.array(f3td[0])-0.12,f3td[1], s=10, color=colors[4])
+    pics[3].scatter(np.array(f4td[0])-0.1,f4td[1], s=10, color=colors[9])
+    #pics[3].annotate(r'Iron', (0, 490), fontsize=16, color=(0,0,0))
+    pics[3].set_ylabel(r'Lattice temperature [K]', fontsize=fsz)
+    pics[3].set_ylim(290, 530)
 
     ###COBALT TEMP###
-    pics[5].plot(ctc[0][0], ctc[0][1], color=colors[1], lw=3.0)
-    pics[5].plot(ctc[1][0], ctc[1][1], color=colors[2], lw=3.0)
-    pics[5].plot(ctc[2][0], ctc[2][1], color=colors[4], lw=3.0)
-    pics[5].plot(ctc[3][0], ctc[3][1], color=colors[6], lw=3.0)
-    pics[5].scatter(np.array(c1td[0])-0.1, c1td[1], s=10, color=colors[1])
-    pics[5].scatter(np.array(c2td[0])-0.1, c2td[1], s=10, color=colors[2])
-    pics[5].scatter(np.array(c3td[0])-0.1, c3td[1], s=10, color=colors[4])
-    pics[5].scatter(np.array(c4td[0])-0.1, c4td[1], s=10, color=colors[6])
-    #pics[5].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
-    pics[5].set_ylim(290, 500)
+    pics[2].plot(ctc[0][0], ctc[0][1], color=colors[1], lw=3.0)
+    pics[2].plot(ctc[1][0], ctc[1][1], color=colors[2], lw=3.0)
+    pics[2].plot(ctc[2][0], ctc[2][1], color=colors[4], lw=3.0)
+    pics[2].plot(ctc[3][0], ctc[3][1], color=colors[6], lw=3.0)
+    pics[2].scatter(np.array(c1td[0])-0.1, c1td[1], s=10, color=colors[1])
+    pics[2].scatter(np.array(c2td[0])-0.1, c2td[1], s=10, color=colors[2])
+    pics[2].scatter(np.array(c3td[0])-0.1, c3td[1], s=10, color=colors[4])
+    pics[2].scatter(np.array(c4td[0])-0.1, c4td[1], s=10, color=colors[6])
+    #pics[2].annotate(r'Cobalt', (0, 460), fontsize=16, color=(0,0,0))
+    pics[2].set_ylim(290, 500)
 
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/allflu.pdf')
 
-    pics[2].annotate(r'(a)', (-0.05,0.86), fontsize=16)
-    pics[1].annotate(r'(c)', (-0.05,0.86), fontsize=16)
-    pics[0].annotate(r'(e)', (-0.05,0.25), fontsize=16)
+    pics[1].annotate(r'(a)', (-0.05,0.86), fontsize=16)
+    pics[0].annotate(r'(c)', (-0.05,0.86), fontsize=16)
+    #pics[0].annotate(r'(e)', (-0.05,0.25), fontsize=16)
 
-    pics[5].annotate(r'(b)', (-0.05,460), fontsize=16)
-    pics[4].annotate(r'(d)', (-0.05,490), fontsize=16)
-    pics[3].annotate(r'(f)', (-0.05,420), fontsize=16)
+    pics[3].annotate(r'(b)', (-0.05,460), fontsize=16)
+    pics[2].annotate(r'(d)', (-0.05,470), fontsize=16)
+    #pics[3].annotate(r'(f)', (-0.05,420), fontsize=16)
 
 def energy(fs, col):
     fig, plots=plotter(10, 6, 2, 2, 0.03, 0.05, (-0.3,4), 0.1, 0, 0, [[3],[2]], [1,3])
@@ -857,44 +857,23 @@ def niplot(fs):
     #fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/Nickel.pdf')
     #plt.xscale('log')
 
-def gadsd():
-    fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-10, 30), 0.2, 0, 0, [[0],[1]], [])
-        
-    sd0sm=ownplot('Gadolinium/sd/sdrate0s.dat', 'mag')
-    sd0st=ownplot('Gadolinium/sd/sdrate0s.dat', 'tem')
-
-    sd10m=ownplot('Gadolinium/sd/sdrate10ps.dat', 'mag')
-    sd10t=ownplot('Gadolinium/sd/sdrate10ps.dat', 'tem')
-
-    sd100m=ownplot('Gadolinium/sd/sdrate100ps.dat', 'mag')
-    sd100t=ownplot('Gadolinium/sd/sdrate100ps.dat', 'tem')
-
-
-
-    pics[0].plot(sd0sm[0], sd0sm[1])
-    pics[1].plot(sd0st[0], sd0st[1])
-
-    pics[0].plot(sd10m[0], sd10m[1])
-    pics[1].plot(sd10t[0], sd10t[1])
-
-    pics[0].plot(sd100m[0], sd100m[1])
-    pics[1].plot(sd100t[0], sd100t[1])
-
-
-    plt.show()
-
 
 def sdplot():
-    fig, pics=plotter(8,6, 1, 1, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[]], [])
+    fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[1]], [])
     path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/sd')
     files=os.listdir(path)
-    dat=[]
 
-    for j,file in enumerate(files):
-        dat.append(ownplot('Gadolinium/sd/' + str(file), 'mag'))
-        pics[0].plot(dat[j][0], dat[j][1], label=str(file))
-    
-    #plt.legend()
+    for file in files:
+
+        if str(file).startswith('pf3e-10'):
+            dat=ownplot('Gadolinium/sd/' + str(file), 'mag')
+            pics[0].plot(dat[0], dat[1], label=str(file))
+        if 'pl1e-13' in str(file):
+            dat=ownplot('Gadolinium/sd/' + str(file), 'mag')
+            pics[1].plot(dat[0], dat[1], label=str(file))
+
+    for pic in pics:
+        pic.legend()
     plt.show()
 
 def gadrate():
@@ -907,7 +886,7 @@ def gadrate():
         dat.append(ownplot('Gadolinium/initempS72/' + str(file), 'mag'))
         pics[0].plot(dat[j][0], dat[j][1], label=str(file))
 
-    #plt.legend()
+    plt.legend()
     plt.show()
 
 
