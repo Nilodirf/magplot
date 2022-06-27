@@ -84,6 +84,9 @@ def ownplot(datei, tom):
         ep=np.array([float(line[6]) for line in columns])
         es=np.array([-float(line[7]) for line in columns])
         return(times, et, ee, ep, es)
+    elif tom=='sd':
+        itmag=np.array([float(line[-1][0]) for line in columns])
+        return(times, nmag, itmag)
     return
   
 
@@ -860,20 +863,23 @@ def niplot(fs):
 
 def sdplot():
     fig, pics=plotter(8,6, 1, 2, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[1]], [])
-    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/sd')
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/general6e21')
     files=os.listdir(path)
 
     for file in files:
 
-        if str(file).startswith('pf3e-10'):
-            dat=ownplot('Gadolinium/sd/' + str(file), 'mag')
-            pics[0].plot(dat[0], dat[1], label=str(file))
+        if str(file).startswith('pf1e-10'):
+            dat=ownplot('Gadolinium/general6e21/' + str(file), 'mag')
+            pics[0].plot(dat[0], dat[1], label=str(file).replace('pf1e-10', ''))
         if 'pl1e-13' in str(file):
-            dat=ownplot('Gadolinium/sd/' + str(file), 'mag')
-            pics[1].plot(dat[0], dat[1], label=str(file))
+            dat=ownplot('Gadolinium/general6e21/' + str(file), 'mag')
+            pics[1].plot(dat[0], dat[1], label=str(file).replace('pl1e-13', ''))
+            
+    pics[0].annotate('t_pf=100 ps', (80, 0.9))
+    pics[1].annotate('t_pl=0.1 ps', (80, 0.9))
 
     for pic in pics:
-        pic.legend()
+        pic.legend(loc='lower right')
     plt.show()
 
 def gadrate():
