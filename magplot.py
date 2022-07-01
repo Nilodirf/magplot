@@ -85,7 +85,7 @@ def ownplot(datei, tom):
         es=np.array([-float(line[7]) for line in columns])
         return(times, et, ee, ep, es)
     elif tom=='sd':
-        itmag=np.array([float(line[-1][0]) for line in columns])
+        itmag=np.array([float(line[-1]) for line in columns])
         return(times, nmag, itmag)
     return
   
@@ -882,6 +882,19 @@ def sdplot():
         pic.legend(loc='lower right')
     plt.show()
 
+def pfplot():
+    fig, pics = plotter(8, 6, 1, 2, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0], [1]], [])
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'3TM_results/Gadolinium/pf')
+    files = os.listdir(path)
+    for file in files:
+        dat=ownplot('Gadolinium/pf/' + str(file), 'sd')
+        pics[0].plot(dat[0], dat[1])
+        pics[0].plot(dat[0], dat[2])
+        pics[1].plot(dat[0], (dat[1]+0.5/7*dat[2]))
+
+    pics[1].set_ylim(0.5,1.5)
+    plt.show()
+
 def gadrate():
     fig, pics=plotter(8,6, 1, 1, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[]], [])
     path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/initempS72')
@@ -901,7 +914,8 @@ def gadrate():
 #highflu(16, 1.5)
 #gadplot()
 #niplot(17)
-sdplot()
+#sdplot()
+pfplot()
 #gadrate()
 
 plt.show()
