@@ -375,7 +375,8 @@ def dirplot(sample, offset, size, colors, ax, min, max, exc):
             t=np.array([offset+float(i.split()[0]) for i in vals[1:]])
             mask=t>50
             m=np.array([float(line.split()[1]) for line in vals[1:]])
-            ax.scatter(t,m, s=size, marker='o', color=colors[2*(j+min-i)], alpha=0.5)
+            #ax.scatter(t,m, s=size, marker='o', color=colors[2*(j+min-i)], alpha=0.5, label='Borchert et al.')
+            ax.scatter(t,m, s=size, marker='o', alpha=0.5, label='Borchert et al.')
     return
 
 def newfeplot(file):
@@ -471,6 +472,7 @@ n4tc=convolute(0.065, n4t)
 n5tc=convolute(0.065, n5t)
 n6tc=convolute(0.065, n6t)
 ntc=[n1tc, n2tc, n3tc, n4tc, n5tc, n6tc]
+n3noqtc=convolute(0.065, n3noqt)
 
 f1tc=convolute(0.106, f1t)
 f2tc=convolute(0.106, f2t)
@@ -623,81 +625,58 @@ def highflu(fsz, txtx):
     #pics[3].annotate(r'(f)', (-0.05,420), fontsize=16)
 
 def energy(fs, col):
-    fig, plots=plotter(10, 6, 2, 2, 0.03, 0.05, (-0.3,4), 0.1, 0, 0, [[3],[2]], [1,3])
+    fig, plots=plotter(6, 10, 1, 3, 0.03, 0.07, (-0.3,4), 0.15, 0, 0, [[0],[0]], [])
 
     n3noq=ownplot('Nickel/c3_noq.dat', 'mag')
 
     ###TP DYN###
-    plots[2].plot(n3tc[0], n3tc[1], color=col, lw=3.0, label=r'e2TM')
-    plots[2].plot(n3noqtc[0], n3noqtc[1], color=color6, lw=3.0, ls='--', label=r'2TM')
-    plots[2].scatter(np.array(n3td[0])+0.05, n3td[1], s=80, marker='+', lw=2.0, label=r'Zahn et al.')
-    plots[2].vlines(0.19, 250, 480, linewidth=1, color=col)
-    plots[2].set_ylim(290, 385)
-    plots[2].set_xlabel(r'delay [ps]', fontsize=fs)
-    plots[2].set_ylabel(r'Lat. temperature [K]', fontsize=fs)
-    plots[2].legend(fontsize=fs-1)
-    plots[2].annotate(r'332 $\frac{\rm{J}}{\rm{cm}^3}$', (2.7,346), fontsize=fs, fontweight='bold')
-    plots[2].annotate(r'd)', (-0.15, 370), fontsize=fs, fontweight='bold')
+    plots[0].plot(n3tc[0], n3tc[1], color=col, lw=3.0, label=r'e2TM')
+    plots[0].plot(n3noqtc[0], n3noqtc[1], color=color6, lw=3.0, ls='--', label=r'2TM')
+    plots[0].scatter(np.array(n3td[0])+0.05, n3td[1], s=60, marker='o', lw=2.0, label=r'Zahn et al.')
+    plots[0].vlines(0.19, 250, 480, linewidth=1, color=col)
+    plots[0].set_ylim(290, 385)
+    plots[0].set_xlabel(r'delay [ps]', fontsize=fs)
+    plots[0].set_ylabel(r'Lat. temperature [K]', fontsize=fs)
+    plots[0].legend(fontsize=fs-1)
+    plots[0].annotate(r'332 $\frac{\rm{J}}{\rm{cm}^3}$', (2.7,346), fontsize=fs, fontweight='bold')
+    plots[0].annotate(r'(c)', (-0.1, 370), fontsize=fs)
 
 
     ####TE DYN####
-    plots[0].plot(nite[0], nite[1], color=col, lw=3.0)
-    plots[0].plot(nitenoq[0], nitenoq[1], color=color6, lw=3.0, ls='--')
-    plots[0].scatter(nit[0], nit[1], lw=2.0, label=r'Tengdin et al.')
-    plots[0].vlines(0.35, 200, 1600, linewidth=1, color=col)
-    plots[0].set_ylim(230, 1550)
-    plots[0].set_xlabel(r'delay [ps]', fontsize=fs)
-    plots[0].set_ylabel(r'El. temperature [K]', fontsize=fs)
-    plots[0].set_xlim((-0.1, 0.8))
-    plots[0].legend(fontsize=fs-1)
-    plots[0].annotate(r'677 $\frac{\rm{J}}{\rm{cm}^3}$', (0.55, 1000), fontsize=fs, fontweight='bold')
-    plots[0].annotate(r'I', (0.3, 1000), fontsize=fs, fontweight='bold')
-    plots[0].annotate(r'II', (0.38, 1000), fontsize=fs, fontweight='bold')
-    plots[0].annotate(r'c)', (-0.08, 1300), fontsize=fs, fontweight='bold')
+    plots[1].plot(nite[0], nite[1], color=col, lw=3.0)
+    plots[1].plot(nitenoq[0], nitenoq[1], color=color6, lw=3.0, ls='--')
+    plots[1].scatter(nit[0], nit[1], lw=2.0, s=60, marker='o', label=r'Tengdin et al.')
+    plots[1].vlines(0.35, 200, 1600, linewidth=1, color=col)
+    plots[1].set_ylim(230, 1550)
+    plots[1].set_xlabel(r'delay [ps]', fontsize=fs)
+    plots[1].set_ylabel(r'El. temperature [K]', fontsize=fs)
+    plots[1].set_xlim((-0.11, 0.8))
+    plots[1].legend(fontsize=fs-1)
+    plots[1].annotate(r'677 $\frac{\rm{J}}{\rm{cm}^3}$', (0.55, 1000), fontsize=fs, fontweight='bold')
+    plots[1].annotate(r'I', (0.3, 1000), fontsize=fs, fontweight='bold')
+    plots[1].annotate(r'II', (0.38, 1000), fontsize=fs, fontweight='bold')
+    plots[1].annotate(r'(b)', (-0.1, 1300), fontsize=fs)
 
 
     ###MAG DYN###
-    plots[3].plot(n3[0], n3[1], color=col, lw=3.0)
-    plots[3].plot(n3noq[0], n3noq[1], color=color6, lw=3.0, ls='--')
-    dirplot('Nickel', 0.1, [None], plots[3], 2, 3, [])
-    plots[3].vlines(0.35, 0.5, 1.2, linewidth=1, color=col)
-    plots[3].set_ylim(0.55, 1.02)
-    plots[3].set_ylabel(r'Norm. magnetization', fontsize=fs)
-    plots[3].legend(fontsize=fs-1)
-    plots[3].annotate(r'758 $\frac{\rm{J}}{\rm{cm}^3}$', (2.7, 0.7), fontsize=fs, fontweight='bold' )
-    plots[3].annotate(r'b)', (-0.15,0.58), fontsize=fs, fontweight='bold' )
-    
-    #plots[0].plot(cen[0], cen[1]*1e-6, color=color5)
-    #plots[0].plot(cennoqad[0], cennoqad[1]*1e-6, color=color8, ls='dashed', lw=2.0)
-    #plots[0].plot(cen[0], cen[4]*1e-6, color=color5)
-    #plots[0].plot(cen[0], -(cen[2]+cen[3]-cennoqad[2]-cennoqad[3])*1e-6, color=color8, ls='-.', lw=2.0)
-    ##plots[0].plot(cen[0], (cen[4]+(cen[2]+cen[3]-cennoqad[2]-cennoqad[3]))*1e-6, linestyle='dotted')
-    #plots[0].vlines(0.19, -50, 600, linewidth=1, color='black')
-    #plots[0].set_ylim(-10, 590)
-    #plots[0].fill_between(cen[0], -(cen[2]+cen[3]-cennoqad[2]-cennoqad[3])*1e-6, cen[4]*1e-6, facecolor=color8, alpha=0.5)
-    #plots[0].fill_between(cen[0], cen[1]*1e-6, cennoqad[1]*1e-6, facecolor=color8, alpha=0.5)
-    #plots[0].set_ylabel(r'absorbed energy [$\frac{\rm{J}}{\rm{cm}^2}$]', fontsize=fs)
-    #plots[0].set_xlabel(r'delay [ps]', fontsize=fs)
-    #plots[0].annotate(r'total', (1.25, 460), fontsize=fs-1)
-    #plots[0].annotate(r'$\rm{E}_{s}$', (1.2, 110), fontsize=fs-1, color=color5)
-    #plots[0].annotate(r'$\Delta(\rm{E}_e+\rm{E}_p)$', (1.35, 110), fontsize=fs-1, color=color8)
+    plots[2].plot(n3[0], n3[1], color=col, lw=3.0)
+    plots[2].plot(n3noq[0], n3noq[1], color=color6, lw=3.0, ls='--')
+    dirplot('Nickel', 0.1, 60, colors, plots[2], 2, 3, [])
+    plots[2].vlines(0.35, 0.5, 1.2, linewidth=1, color=col)
+    plots[2].set_ylim(0.55, 1.02)
+    plots[2].set_xlim(-0.3, 4)
+    plots[2].set_ylabel(r'Norm. magnetization', fontsize=fs)
+    plots[2].legend(fontsize=fs-1)
+    plots[2].annotate(r'758 $\frac{\rm{J}}{\rm{cm}^3}$', (2.7, 0.7), fontsize=fs, fontweight='bold' )
+    plots[2].annotate(r'(a)', (-0.1,0.58), fontsize=fs)
 
     plots[1].yaxis.set_label_position("right")
-    plots[3].yaxis.set_label_position("right")
     plots[1].yaxis.tick_right()
-    plots[3].yaxis.tick_right()
 
-    plt.setp(plots[1].get_xticklabels(), visible=False)
-    plt.setp(plots[1].get_yticklabels(), visible=False)
 
-    plots[1].set_xticks([])
-    plots[1].set_yticks([])
-    plots[1].set_xlim(-0.1,0.8)
-    plots[1].set_ylim(0,1)
-    plots[1].vlines(0.35, 0, 1, linewidth=1, color=col)
-    plots[1].annotate(r'I', (0.3, 0.4), fontsize=fs, fontweight='bold')
-    plots[1].annotate(r'II', (0.38, 0.4), fontsize=fs, fontweight='bold')
-    plots[1].annotate(r'a)', (-0.08, 0.06), fontsize=fs, fontweight='bold')
+    for p in plots:
+        p.tick_params(axis='x', labelsize=15)
+        p.tick_params(axis='y', labelsize=15)
 
     fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/energy.pdf')
 
@@ -909,13 +888,13 @@ def gadrate():
     plt.show()
 
 
-#energy(17, color8)
+energy(17, color8)
 #koopmans(10)
 #highflu(16, 1.5)
 #gadplot()
 #niplot(17)
 #sdplot()
-pfplot()
+#pfplot()
 #gadrate()
 
 plt.show()
