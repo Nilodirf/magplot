@@ -133,6 +133,7 @@ n6t=ownplot('Nickel/lattice/f6.dat', 'tem')
 nite=ownplot('Nickel/lattice/tefit.dat', 'tem')
 nitenoq=ownplot('Nickel/lattice/tefitnoq.dat', 'tem')
 n3noqt=ownplot('Nickel/lattice/f3noq.dat', 'tem')
+n4noqt=ownplot('Nickel/lattice/f4noq.dat', 'tem')
 
 f1t=ownplot('Iron/lattice/230.dat', 'tem')
 f2t=ownplot('Iron/lattice/390.dat', 'tem')
@@ -375,7 +376,8 @@ def dirplot(sample, offset, size, colors, ax, min, max, exc):
             t=np.array([offset+float(i.split()[0]) for i in vals[1:]])
             mask=t>50
             m=np.array([float(line.split()[1]) for line in vals[1:]])
-            ax.scatter(t,m, s=size, marker='o', color=colors[2*(j+min-i)], alpha=0.5)
+            #ax.scatter(t,m, s=size, marker='o', color=colors[(j+min-i+1)], alpha=0.5)
+            ax.scatter(t,m, s=size, marker='o', color=colors[3], alpha=0.3, label='Borchert et al.')
     return
 
 def newfeplot(file):
@@ -472,6 +474,7 @@ n5tc=convolute(0.065, n5t)
 n6tc=convolute(0.065, n6t)
 ntc=[n1tc, n2tc, n3tc, n4tc, n5tc, n6tc]
 n3noqtc=convolute(0.065, n3noqt)
+n4noqtc=convolute(0.065, n4noqt)
 
 f1tc=convolute(0.106, f1t)
 f2tc=convolute(0.106, f2t)
@@ -624,56 +627,56 @@ def highflu(fsz, txtx):
     #pics[3].annotate(r'(f)', (-0.05,420), fontsize=16)
 
 def energy(fs, col):
-    fig, plots=plotter(6, 10, 1, 3, 0.03, 0.07, (-0.3,4), 0.15, 0, 0, [[0],[0]], [])
+
+    fig, plots=plotter(6, 6, 1, 3, 0.03, 0.05, (-0.2,4), 0.14, 0, 0, [[0],[0]], [])
 
     n3noq=ownplot('Nickel/c3_noq.dat', 'mag')
 
     ###TP DYN###
-    plots[0].plot(n3tc[0], n3tc[1], color=col, lw=4.0, label=r'e2TM')
-    plots[0].plot(n3noqtc[0], n3noqtc[1], color=color6, lw=4.0, ls='--', label=r'2TM')
-    plots[0].scatter(np.array(n3td[0])+0.05, n3td[1], s=60, marker='o', label=r'Zahn et al.')
-    plots[0].vlines(0.19, 250, 480, linewidth=1, color=col)
-    plots[0].set_ylim(290, 385)
+    plots[0].plot(n4tc[0], n4tc[1], color=col, lw=3.0, label=r'e2TM')
+    plots[0].plot(n4noqtc[0], n4noqtc[1], color=color3, lw=3.0, ls='--', label=r'2TM')
+    plots[0].scatter(np.array(n4td[0])+0.05, n4td[1], s=30, marker='o', color=colors[3], alpha=0.5, label=r'Zahn et al.')
+    plots[0].vlines(0.33, 250, 480, linewidth=1, color=color8)
+    plots[0].set_ylim(290, 450)
     plots[0].set_xlabel(r'delay [ps]', fontsize=fs)
-    plots[0].set_ylabel(r'Lat. temperature [K]', fontsize=fs)
+    plots[0].set_ylabel(r'$T_p$ [K]', fontsize=fs)
     plots[0].legend(fontsize=fs-1)
-    plots[0].annotate(r'332 $\frac{\rm{J}}{\rm{cm}^3}$', (2.7,355), fontsize=fs, fontweight='bold')
-    plots[0].annotate(r'(c)', (-0.2, 370), fontsize=fs)
+    plots[0].annotate(r'605 $\frac{\rm{J}}{\rm{cm}^3}$', (0.75,370), fontsize=fs)
+    plots[0].annotate(r'(c)', (-0.17, 417), fontsize=fs)
 
 
     ####TE DYN####
-    plots[1].plot(nite[0], nite[1], color=col, lw=4.0)
-    plots[1].plot(nitenoq[0], nitenoq[1], color=color6, lw=4.0, ls='--')
-    plots[1].scatter(nit[0], nit[1], lw=2.0, s=60, marker='o', label=r'Tengdin et al.')
-    plots[1].vlines(0.35, 200, 1600, linewidth=1, color=col)
+    plots[1].plot(nite[0], nite[1], color=col, lw=3.0)
+    plots[1].plot(nitenoq[0], nitenoq[1], color=color3, lw=3.0, ls='--')
+    plots[1].scatter(nit[0], nit[1], s=30, marker='o', color=colors[3], alpha=0.5, label=r'Tengdin et al.')
+    plots[1].vlines(0.35, 200, 1600, linewidth=1, color=color8)
     plots[1].set_ylim(230, 1550)
-    plots[1].set_xlabel(r'delay [ps]', fontsize=fs)
-    plots[1].set_ylabel(r'El. temperature [K]', fontsize=fs)
-    plots[1].set_xlim((-0.11, 0.8))
+    plots[1].set_ylabel(r'$T_e$ [K]', fontsize=fs)
+    plots[1].set_xlim((-0.1, 0.8))
     plots[1].legend(fontsize=fs-1)
-    plots[1].annotate(r'677 $\frac{\rm{J}}{\rm{cm}^3}$', (0.55, 900), fontsize=fs, fontweight='bold')
-    plots[1].annotate(r'(b)', (-0.1, 1300), fontsize=fs)
+    plots[1].annotate(r'677 $\frac{\rm{J}}{\rm{cm}^3}$', (0.1, 350), fontsize=fs)
+    plots[1].annotate(r'(b)', (-0.09, 1300), fontsize=fs)
 
 
     ###MAG DYN###
-    plots[2].plot(n3[0], n3[1], color=col, lw=4.0)
-    plots[2].plot(n3noq[0], n3noq[1], color=color6, lw=4.0, ls='--')
-    dirplot('Nickel', 0.1, 60, colors, plots[2], 2, 3, [])
-    plots[2].vlines(0.35, 0.5, 1.2, linewidth=1, color=col)
+    plots[2].plot(n3[0], n3[1], color=col, lw=3.0)
+    plots[2].plot(n3noq[0], n3noq[1], color=color3, lw=3.0, ls='--')
+    dirplot('Nickel', 0.1, 30, colors, plots[2], 2, 3, [])
+    plots[2].vlines(0.35, 0.5, 1.2, linewidth=1, color=color8)
     plots[2].set_ylim(0.55, 1.02)
-    plots[2].set_xlim(-0.3, 4)
-    plots[2].set_ylabel(r'Norm. magnetization', fontsize=fs)
+    plots[2].set_xlim(-0.2, 4)
+    plots[2].set_ylabel(r'$m/m(0)$', fontsize=fs)
     plots[2].legend(fontsize=fs-1)
-    plots[2].annotate(r'758 $\frac{\rm{J}}{\rm{cm}^3}$', (2.7, 0.7), fontsize=fs, fontweight='bold' )
-    plots[2].annotate(r'(a)', (-0.2,0.58), fontsize=fs)
+    plots[2].annotate(r'758 $\frac{\rm{J}}{\rm{cm}^3}$', (0.75, 0.78), fontsize=fs)
+    plots[2].annotate(r'(a)', (-0.17,0.58), fontsize=fs)
 
-    plots[1].yaxis.set_label_position("right")
-    plots[1].yaxis.tick_right()
+    #plots[1].yaxis.set_label_position("right")
+    #plots[1].yaxis.tick_right()
 
 
     for p in plots:
-        p.tick_params(axis='x', labelsize=15)
-        p.tick_params(axis='y', labelsize=15)
+        p.tick_params(axis='x', labelsize=12)
+        p.tick_params(axis='y', labelsize=12)
 
     fig.savefig('C:/Users/tgrie/Desktop/Madrid Physik/paperpics/energy.pdf')
 
@@ -847,14 +850,44 @@ def gadrate():
     plt.legend()
     plt.show()
 
+def supplot(fs):
+    fig, pics = plotter(8, 6, 1, 2, 0, 0.05, (-0.1, 4.), 0.1, 0, 0, [[0], [1]], [])
 
-#energy(17, color8)
+    #dirplot('Nickel', 0.1, 60, colors, pics[0], 1, 7, [])
+
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        '3TM_results/Nickel/finite depth')
+    files=os.listdir(path)
+    dat=[]
+
+    for j, file in enumerate(files):
+        dat.append(ownplot('Nickel/finite depth/' + str(file), 'mag'))
+        t = dat[j][0] - 0.003 * (j+1)
+        pics[0].plot(t, dat[j][1], color=colors[j+2], lw=3.0, ls='dashed')
+
+    for i, dat in enumerate(ns[1:]):
+        t=dat[0]-0.003*(i+1)
+        pics[0].plot(t, dat[1], color=colors[i+2], lw=3.0)
+
+    pics[0].set_xlabel(r'delay [ps]', fontsize=fs)
+    pics[0].set_ylabel(r'Norm. magnetization', fontsize=fs)
+
+    for i, dat in enumerate(ntc[:4]):
+        pics[1].plot(dat[0], dat[1], color=colors[i], lw=3.0)
+
+    for i, dat in enumerate(ntc[4:]):
+        pics[1].plot(dat[0], dat[1], color=colors[i+7], lw=3.0)
+
+
+
+energy(15, colors[3])
 #koopmans(10)
-highflu(16, 1.5)
+#highflu(16, 1.5)
 #gadplot()
 #niplot(17)
 #sdplot()
 #pfplot()
 #gadrate()
+#supplot(16)
 
 plt.show()
