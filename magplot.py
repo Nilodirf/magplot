@@ -682,7 +682,7 @@ def energy(fs, col):
 
 
 def gadplot():
-    fig, plots=plotter(8, 5, 1, 2, 0, 0.05, (-5,600), 0.1, 0, 0, [[],[0]], [])
+    fig, plots=plotter(8, 5, 1, 1, 0, 0.05, (1e-2,650), 0.1, 0, 0, [[],[0]], [])
 
     #READ exp mag data#
     dat0=gadmag('1.9')
@@ -706,59 +706,50 @@ def gadplot():
     g5=ownplot('Gadolinium/sim11.2.dat', 'mag')
     g5b=ownplot('Gadolinium/sim11.2b.dat', 'mag')
 
-    gt=ownplot('Gadolinium/temp.dat', 'tem')
-    #gtps=ownplot('Gadolinium/temp_gps.dat', 'tem')
-    #gtce=ownplot('Gadolinium/temp_cehigh.dat', 'tem')
-    #gtasf=ownplot('Gadolinium/temp_cehasfh.dat', 'tem')
+    #sd56=ownplot('Gadolinium/sd/sim5.6.dat', 'mag')
+    #plots[0].plot(sd56[0], sd56[1], lw=3.0, color=color6)
+
+    np=ownplot('Gadolinium/sd/nopump.dat', 'mag')
+    nprho=ownplot('Gadolinium/sd/nopumprho.dat', 'mag')
+    npmum=ownplot('Gadolinium/sd/nopumpmum.dat', 'mag')
+
+    plots[0].plot(np[0]+10, np[1])
+    plots[0].plot(nprho[0]+10, nprho[1])
+    plots[0].plot(npmum[0]+10, npmum[1])
+
 
     #PLOT exp mag data#
     #plots[0].scatter(dat0[0]+0.1, dat0[1], s=40, marker='o', color=color1)
     #plots[0].scatter(dat1[0]+0.1, dat1[1], s=40, marker='o', color=color4)
     #plots[0].scatter(dat2[0]+0.1, dat2[1], s=40, marker='o', color=color6)
     #plots[0].scatter(dat3[0]+0.1, dat3[1], s=40, marker='o', color=color8)
-    #plots[0].scatter(dat4[0]+0.1, dat4[1], s=40, marker='o', color=colors[9])
+    #plots[0].scatter(dat4[0]-0.2, dat4[1], s=40, marker='o', color=colors[9])
     #plots[0].scatter(dat5[0]+0.1, dat5[1], s=40, marker='o', color=colors[11])
 
     #PLOT sim mag data#
-    plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=color1)
-    plots[0].plot(g0b[0]-30, g0b[1]/0.948, lw=3.0, color=color1, linestyle='dashed')
-    plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=color4)
-    plots[0].plot(g1b[0]-30, g1b[1]/0.948, lw=3.0, color=color4, linestyle='dashed')
-    plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
-    plots[0].plot(g2b[0]-30, g2b[1]/0.948, lw=3.0, color=color6, linestyle='dashed')
-    plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
-    plots[0].plot(g3b[0]-30, g3b[1]/0.948, lw=3.0, color=color8, linestyle='dashed')
-    plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[9])
-    plots[0].plot(g4b[0]-30, g4b[1]/0.948, lw=3.0, color=colors[9], linestyle='dashed')
-    plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
-    plots[0].plot(g5b[0]-30, g5b[1]/0.948, lw=3.0, color=colors[11], linestyle='dashed')
-
-    #READ exp temp data#
-    dat=open('C:/Users/tgrie/Desktop/3TM_results/Gadolinium/gdtemp.txt','r')
-    vals=dat.readlines()
-    x=np.array([float(i.split()[0]) for i in vals[1:]])
-    tl=np.array([float(line.split()[4]) for line in vals[1:]])
-    te=np.array([float(line.split()[5]) for line in vals[1:]])
-
-    #PLOT exp temp data#
-    plots[1].scatter(x-0.02, te, s=40, marker='o')
-
-    #PLOT sim tem data#
-    plots[1].plot(gt[0]-30, gt[1], lw=3.0, label=r'mag sim')
-    #plots[1].plot(gtps[0]-30, gtps[1], lw=3.0, color='blue', ls='dashed', label=r'\sigma higher')
-    #plots[1].plot(gtce[0]-30, gtce[1], lw=3.0, color='red', ls='solid', label=r'ce higher')
-    #plots[1].plot(gtasf[0]-30, gtasf[1], lw=3.0, color='green', ls='dashed', label=r'ce higher, asf higher')
+    #plots[0].plot(g0[0]-30, g0[1]/0.948, lw=3.0, color=color1)
+    #plots[0].plot(g0b[0]-30, g0b[1]/0.948, lw=3.0, color=color1, linestyle='dashed')
+    #plots[0].plot(g1[0]-30, g1[1]/0.948, lw=3.0, color=color4)
+    #plots[0].plot(g1b[0]-30, g1b[1]/0.948, lw=3.0, color=color4, linestyle='dashed')
+    #plots[0].plot(g2[0]-30, g2[1]/0.948, lw=3.0, color=color6)
+    #plots[0].plot(g2b[0]-30, g2b[1]/0.948, lw=3.0, color=color6, linestyle='dashed')
+    #plots[0].plot(g3[0]-30, g3[1]/0.948, lw=3.0, color=color8)
+    #plots[0].plot(g3b[0]-30, g3b[1]/0.948, lw=3.0, color=color8, linestyle='dashed')
+    #plots[0].plot(g4[0]-30, g4[1]/0.948, lw=3.0, color=colors[9])
+    #plots[0].plot(g4b[0]-30, g4b[1]/0.948, lw=3.0, color=colors[9], linestyle='dashed')
+    #plots[0].plot(g5[0]-30, g5[1]/0.948, lw=3.0, color=colors[11])
+    #plots[0].plot(g5b[0]-30, g5b[1]/0.948, lw=3.0, color=colors[11], linestyle='dashed')
 
     #modify plot#
     plots[0].set_xlabel(r'delay [ps]')
     plots[0].set_ylabel(r'Normalized magnetization')
     plots[0].set_xscale('log')
 
-    plots[1].set_ylabel(r'Electron temperature [K]')
-    plots[1].set_xlabel(r'delay [ps]')
-    plots[1].set_xlim(-0.2, 5)
+    #plots[1].set_ylabel(r'Electron temperature [K]')
+    #plots[1].set_xlabel(r'delay [ps]')
+    #plots[1].set_xlim(-0.2, 5)
     plt.legend()
-    #fig.savefig('C:/Users/tgrie/Desktop/3TM_results/Gadolinium/solocomp.pdf')
+    fig.savefig('C:/Users/tgrie/Desktop/3TM_results/Gadolinium/sd.pdf')
 
 
 def niplot(fs):
@@ -842,12 +833,43 @@ def gadrate():
     path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/initempS72')
     files=os.listdir(path)
     dat=[]
+    relaxtime=[]
+    tem=[]
+
+    def brillouin(x, spin):
+        # Compute equilibrium magnetization via Brillouin function
+        c1 = (2 * spin + 1) / (2 * spin)
+        c2 = 1 / (2 * spin)
+        fb = c1 / np.tanh(c1 * x) - c2 / np.tanh(c2 * x)
+        return (fb)
 
     for j,file in enumerate(files):
         dat.append(ownplot('Gadolinium/initempS72/' + str(file), 'mag'))
-        pics[0].plot(dat[j][0], dat[j][1], label=str(file))
+        timeframe=dat[j][0][:10]+10
+        magframe=dat[j][1][:10]
+        vals=np.polyfit(timeframe, magframe, 1)
+        tem.append(float(str(file).replace('.dat', '')))
+        mag=np.arange(0,1,0.0001)
+        S=7/2
+        J=3*S/(S+1)*293
 
-    plt.legend()
+
+        a=2
+        for i in mag:
+            if i-brillouin(J*i/tem[j],S)<a:
+                a=i
+
+        c=2
+        for i in dat[j][0]:
+            func=vals[0]*i+vals[1]
+            if func-a<c:
+                c=func-vals[1]
+        relaxtime.append(-c)
+
+    plt.scatter(np.array(tem)/293., relaxtime)
+    plt.xlabel('$T/T_C$', fontsize=18)
+    plt.ylabel('$t_m$', fontsize=18)
+
     plt.show()
 
 def supplot(fs):
@@ -880,14 +902,14 @@ def supplot(fs):
 
 
 
-energy(15, colors[3])
+#energy(15, colors[3])
 #koopmans(10)
 #highflu(16, 1.5)
-#gadplot()
 #niplot(17)
-#sdplot()
 #pfplot()
-#gadrate()
 #supplot(16)
 
+#gadrate()
+gadplot()
+#sdplot()
 plt.show()
