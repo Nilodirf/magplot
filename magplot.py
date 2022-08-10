@@ -682,7 +682,7 @@ def energy(fs, col):
 
 
 def gadplot():
-    fig, plots=plotter(8, 5, 1, 1, 0, 0.05, (1e-2,650), 0.1, 0, 0, [[],[0]], [])
+    fig, plots=plotter(8, 5, 1, 1, 0, 0.05, (-10,650), 0.1, 0, 0, [[],[0]], [])
 
     #READ exp mag data#
     dat0=gadmag('1.9')
@@ -709,13 +709,11 @@ def gadplot():
     #sd56=ownplot('Gadolinium/sd/sim5.6.dat', 'mag')
     #plots[0].plot(sd56[0], sd56[1], lw=3.0, color=color6)
 
-    np=ownplot('Gadolinium/sd/nopump.dat', 'mag')
-    nprho=ownplot('Gadolinium/sd/nopumprho.dat', 'mag')
-    npmum=ownplot('Gadolinium/sd/nopumpmum.dat', 'mag')
+    ref=ownplot('Gadolinium/initempS72/100.dat', 'mag')
+    npmum=ownplot('Gadolinium/sd/nopumpmum.dat', 'sd')
 
-    plots[0].plot(np[0]+10, np[1])
-    plots[0].plot(nprho[0]+10, nprho[1])
-    plots[0].plot(npmum[0]+10, npmum[1])
+    plots[0].plot(ref[0]+10, ref[1], label='Br_7/2')
+    plots[0].plot(npmum[0]+10, npmum[1]*6/7-npmum[2]*1e19/7, label='npmum')
 
 
     #PLOT exp mag data#
@@ -743,7 +741,7 @@ def gadplot():
     #modify plot#
     plots[0].set_xlabel(r'delay [ps]')
     plots[0].set_ylabel(r'Normalized magnetization')
-    plots[0].set_xscale('log')
+    #plots[0].set_xscale('log')
 
     #plots[1].set_ylabel(r'Electron temperature [K]')
     #plots[1].set_xlabel(r'delay [ps]')
