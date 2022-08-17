@@ -826,10 +826,13 @@ def pfplot():
     pics[1].set_ylim(0.5,1.5)
     plt.show()
 
-def gadrate():
+def gadrate(folder):
     fig, pics=plotter(8,6, 1, 1, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[]], [])
-    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/initempS72')
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/' + str(folder))
     files=os.listdir(path)
+    timeframes=[]
+    magframes=[]
+    mmags=[]
     dat=[]
     relaxtime=[]
     tem=[]
@@ -844,31 +847,36 @@ def gadrate():
     for j,file in enumerate(files):
         dat.append(ownplot('Gadolinium/initempS72/' + str(file), 'mag'))
         timeframe=dat[j][0][:10]+10
+        tf=dat[j][0]+10
+        timeframes.append(tf)
         magframe=dat[j][1][:10]
+        mf = dat[j][1]
+        magframes.append(mf)
         vals=np.polyfit(timeframe, magframe, 1)
-        tem.append(float(str(file).replace('.dat', '')))
-        mag=np.arange(0,1,0.0001)
-        S=7/2
+        tem.append(float(str(file).replace('.dat', ''))+10.)
+        mag=np.arange(0.0001,1,0.0001)
+        S=float(folder.replace('initempS', '').replace('12', '0.5').replace('72', '3.5'))
         J=3*S/(S+1)*293
-
-
-        a=2
-        for i in mag:
-            if i-brillouin(J*i/tem[j],S)<a:
-                a=i
+        mmags.append(mf[-1])
 
         c=2
         for i in dat[j][0]:
             func=vals[0]*i+vals[1]
-            if func-a<c:
+            if func-mf[-1]<c:
                 c=func-vals[1]
         relaxtime.append(-c)
+        print(vals[0])
+    #for j, tf in enumerate(timeframes):
+     #   plt.plot(tf, magframes[j])
+     #   plt.xlabel('delay [ps]', fontsize=16)
+     #   plt.ylabel('Magnetization', fontsize=16)
+    #for a in mmags:
+     #   plt.hlines(a, 0,100)
+     #   plt.plot(timeframe, vals[1]+vals[0]*mag[:len(timeframe)])
+    #return
 
-    plt.scatter(np.array(tem)/293., relaxtime)
-    plt.xlabel('$T/T_C$', fontsize=18)
-    plt.ylabel('$t_m$', fontsize=18)
+    return(np.array(tem)/293., relaxtime)
 
-    plt.show()
 
 def supplot(fs):
     fig, pics = plotter(8, 6, 1, 2, 0, 0.05, (-0.1, 4.), 0.1, 0, 0, [[0], [1]], [])
@@ -906,8 +914,14 @@ def supplot(fs):
 #niplot(17)
 #pfplot()
 #supplot(16)
-
-#gadrate()
-gadplot()
+#gadplot()
 #sdplot()
+
+s12 = gadrate('initempS12')
+s72 = gadrate('initempS72')
+plt.scatter(s12[0], s12[1], label='S=1/2')
+plt.scatter(s72[0], s72[1], label='S=7/2')
+plt.xlabel('$T/T_C$', fontsize=18)
+plt.ylabel('$t_m$', fontsize=18)
+plt.legend()
 plt.show()
