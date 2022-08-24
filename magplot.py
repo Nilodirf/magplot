@@ -836,6 +836,7 @@ def gadrate(folder):
     dat=[]
     relaxtime=[]
     tem=[]
+    slopes=[]
 
     def brillouin(x, spin):
         # Compute equilibrium magnetization via Brillouin function
@@ -845,14 +846,15 @@ def gadrate(folder):
         return (fb)
 
     for j,file in enumerate(files):
-        dat.append(ownplot('Gadolinium/initempS72/' + str(file), 'mag'))
-        timeframe=dat[j][0][:10]+10
+        dat.append(ownplot('Gadolinium/'+str(folder)+ '/' + str(file), 'mag'))
+        timeframe=dat[j][0][:2]+10
         tf=dat[j][0]+10
         timeframes.append(tf)
-        magframe=dat[j][1][:10]
+        magframe=dat[j][1][:2]
         mf = dat[j][1]
         magframes.append(mf)
         vals=np.polyfit(timeframe, magframe, 1)
+        slopes.append(vals[0])
         tem.append(float(str(file).replace('.dat', ''))+10.)
         mag=np.arange(0.0001,1,0.0001)
         S=float(folder.replace('initempS', '').replace('12', '0.5').replace('72', '3.5'))
@@ -865,7 +867,7 @@ def gadrate(folder):
             if func-mf[-1]<c:
                 c=func-vals[1]
         relaxtime.append(-c)
-        print(vals[0])
+    print(folder, slopes)
     #for j, tf in enumerate(timeframes):
      #   plt.plot(tf, magframes[j])
      #   plt.xlabel('delay [ps]', fontsize=16)
