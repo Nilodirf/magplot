@@ -855,29 +855,39 @@ def gadrate(folder):
         magframes.append(mf)
         vals=np.polyfit(timeframe, magframe, 1)
         slopes.append(vals[0])
-        tem.append(float(str(file).replace('.dat', ''))+10.)
+        tem.append(float(str(file).replace('.dat', '')))
         mag=np.arange(0.0001,1,0.0001)
         S=float(folder.replace('initempS', '').replace('12', '0.5').replace('72', '3.5'))
         J=3*S/(S+1)*293
-        mmags.append(mf[-1])
 
-        c=2
-        for i in dat[j][0]:
-            func=vals[0]*i+vals[1]
-            if func-mf[-1]<c:
-                c=func-vals[1]
-        relaxtime.append(-c)
-    print(folder, slopes)
-    #for j, tf in enumerate(timeframes):
-     #   plt.plot(tf, magframes[j])
-     #   plt.xlabel('delay [ps]', fontsize=16)
-     #   plt.ylabel('Magnetization', fontsize=16)
-    #for a in mmags:
-     #   plt.hlines(a, 0,100)
-     #   plt.plot(timeframe, vals[1]+vals[0]*mag[:len(timeframe)])
-    #return
+        mags=np.arange(1e-5,1, 1e-5)
+        eta=3*S/(S*1)*293./tem[-1]*mags
+        brf=brillouin(eta, S)
+        diff=mags-brf
+        mmag=0
+        for i in range(len(mags)-1):
+            if abs(diff[i]-diff[i+1])>=abs(diff[i]+diff[i+1]):
+                mmag=mags[i]
+        if mmag==0 and tem[-1]>280:
+            mmag=1
+        mmags.append(mmag)
 
-    return(np.array(tem)/293., relaxtime)
+        # c=2
+        # for i in dat[j][0]:
+        #     func=vals[0]*i+vals[1]
+        #     if func-mf[-1]<c:
+        #         c=func-vals[1]
+        # relaxtime.append(-c)
+    # for j, tf in enumerate(timeframes):
+    #    plt.plot(tf, magframes[j])
+    #    plt.xlabel('delay [ps]', fontsize=16)
+    #    plt.ylabel('Magnetization', fontsize=16)
+    # for a in mmags:
+    #    plt.hlines(a, 0,100)
+    #    plt.plot(timeframe, vals[1]+vals[0]*mag[:len(timeframe)])
+
+    print(mmags)
+    return(np.array(tem)/293., -np.array(slopes)/(1-np.array(mmags)))
 
 
 def supplot(fs):
