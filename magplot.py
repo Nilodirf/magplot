@@ -827,7 +827,6 @@ def pfplot():
     plt.show()
 
 def gadrate(folder):
-    fig, pics=plotter(8,6, 1, 1, 0, 0.05, (-10, 100), 0.2, 0, 0, [[0],[]], [])
     path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/' + str(folder))
     files=os.listdir(path)
     timeframes=[]
@@ -861,33 +860,46 @@ def gadrate(folder):
         J=3*S/(S+1)*293
 
         mags=np.arange(1e-5,1, 1e-5)
-        eta=3*S/(S*1)*293./tem[-1]*mags
+        eta=J/tem[-1]*mags
         brf=brillouin(eta, S)
         diff=mags-brf
         mmag=0
         for i in range(len(mags)-1):
             if abs(diff[i]-diff[i+1])>=abs(diff[i]+diff[i+1]):
                 mmag=mags[i]
-        if mmag==0 and tem[-1]>280:
-            mmag=1
+        #if mmag==0 and tem[-1]>280:
+            #mmag=1
         mmags.append(mmag)
 
-        # c=2
-        # for i in dat[j][0]:
-        #     func=vals[0]*i+vals[1]
-        #     if func-mf[-1]<c:
-        #         c=func-vals[1]
-        # relaxtime.append(-c)
+        times = np.arange(0, 100, 1e-4)
+        lin=np.array([vals[0]*i+vals[1] for i in times])
+        diff=abs(lin-mmag)
+        tm=np.where(diff==diff.min())[0][0]*1e-4
+
+        def expo(t, tm, mm):
+            return (1-mm)*np.exp(-t/tm)+mm
+        
+        p0=(tm, mmag)
+
+        params, cv =curve_fit(expo, tf, mf, p0)
+        tm, mm=params
+
+        relaxtime.append(tm)
+
+    # fig=plt.figure(figsize=(8,5))
+    # plt.xlim(0,100)
+    # plt.ylim(0.2,1.05)
+    # plt.title('Spin' + str(S))
     # for j, tf in enumerate(timeframes):
-    #    plt.plot(tf, magframes[j])
-    #    plt.xlabel('delay [ps]', fontsize=16)
-    #    plt.ylabel('Magnetization', fontsize=16)
+    #     plt.plot(tf, magframes[j])
+    #     plt.xlabel('delay [ps]', fontsize=16)
+    #     plt.ylabel('Magnetization', fontsize=16)
+    # plt.show()
     # for a in mmags:
     #    plt.hlines(a, 0,100)
     #    plt.plot(timeframe, vals[1]+vals[0]*mag[:len(timeframe)])
 
-    print(mmags)
-    return(np.array(tem)/293., -np.array(slopes)/(1-np.array(mmags)))
+    return(np.array(tem)/293., relaxtime)
 
 
 def supplot(fs):
@@ -931,9 +943,12 @@ def supplot(fs):
 
 s12 = gadrate('initempS12')
 s72 = gadrate('initempS72')
+fig=plt.figure(figsize=(8,5))
 plt.scatter(s12[0], s12[1], label='S=1/2')
 plt.scatter(s72[0], s72[1], label='S=7/2')
 plt.xlabel('$T/T_C$', fontsize=18)
-plt.ylabel('$t_m$', fontsize=18)
+plt.ylabel('$t_m$ [ps]', fontsize=18)
+plt.xlim(0.2,1.05)
+plt.ylim(0,40)
 plt.legend()
 plt.show()
