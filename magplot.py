@@ -989,6 +989,9 @@ def enniplot(fs):
     plots[0].annotate(r'$\rm{E}_{s}$', (1.2, 110), fontsize=fs-1, color=color5)
     plots[0].annotate(r'$\Delta(\rm{E}_e+\rm{E}_p)$', (1.35, 110), fontsize=fs-1, color=color8)
 
+def cgtplot():
+
+
 
 #energy(15, colors[3])
 #koopmans(10)
