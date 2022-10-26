@@ -88,8 +88,16 @@ def ownplot(datei, tom):
         itmag=np.array([float(line[-1]) for line in columns])
         return(times, nmag, itmag)
     return
-  
 
+times, mag, itmag=ownplot('pftest/test1.dat', 'sd')
+times, te, tp=ownplot('pftest/test1.dat', 'tem')
+plt.plot(times, mag, label='loc')
+plt.plot(times, itmag, label='it')
+plt.legend()
+plt.show()
+plt.plot(times, te)
+plt.plot(times, tp)
+plt.show()
 
 n1=ownplot('Nickel/c1.dat', 'mag')
 n2=ownplot('Nickel/c2.dat', 'mag')
@@ -989,7 +997,6 @@ def enniplot(fs):
     plots[0].annotate(r'$\rm{E}_{s}$', (1.2, 110), fontsize=fs-1, color=color5)
     plots[0].annotate(r'$\Delta(\rm{E}_e+\rm{E}_p)$', (1.35, 110), fontsize=fs-1, color=color8)
 
-def cgtplot():
 
 
 
@@ -1003,14 +1010,14 @@ def cgtplot():
 #sdplot()
 #enniplot(17)
 
-s12 = gadrate('initempS12')
-s72 = gadrate('initempS72')
-fig=plt.figure(figsize=(8,5))
-plt.scatter(s12[0], s12[1], label='S=1/2')
-plt.scatter(s72[0], s72[1], label='S=7/2')
-plt.xlabel('$T/T_C$', fontsize=18)
-plt.ylabel('$t_m$ [ps]', fontsize=18)
+#s12 = gadrate('initempS12')
+#s72 = gadrate('initempS72')
+#fig=plt.figure(figsize=(8,5))
+#plt.scatter(s12[0], s12[1], label='S=1/2')
+#plt.scatter(s72[0], s72[1], label='S=7/2')
+#plt.xlabel('$T/T_C$', fontsize=18)
+#plt.ylabel('$t_m$ [ps]', fontsize=18)
 #plt.xlim(0.4,1.01)
 #plt.ylim(0,1010)
-plt.legend()
-plt.show()
+#plt.legend()
+#plt.show()
