@@ -89,15 +89,6 @@ def ownplot(datei, tom):
         return(times, nmag, itmag)
     return
 
-times, mag, itmag=ownplot('pftest/test1.dat', 'sd')
-times, te, tp=ownplot('pftest/test1.dat', 'tem')
-plt.plot(times, mag, label='loc')
-plt.plot(times, itmag, label='it')
-plt.legend()
-plt.show()
-plt.plot(times, te)
-plt.plot(times, tp)
-plt.show()
 
 n1=ownplot('Nickel/c1.dat', 'mag')
 n2=ownplot('Nickel/c2.dat', 'mag')
@@ -834,8 +825,16 @@ def pfplot():
     pics[1].set_ylim(0.5,1.5)
     plt.show()
 
+def tcplot():
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Iron/tcs')
+    files=os.listdir(path)
+    for file in files:
+        dat=ownplot('Iron/tcs/' + str(file), 'mag')
+        plt.plot(dat[0], dat[1]/dat[1][1000], label=str(file))
+    return
+
 def gadrate(folder):
-    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Gadolinium/' + str(folder))
+    path= os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/Iron/' + str(folder))
     files=os.listdir(path)
     timeframes=[]
     magframes=[]
@@ -859,7 +858,7 @@ def gadrate(folder):
         return (dfb)
 
     for j,file in enumerate(files):
-        dat.append(ownplot('Gadolinium/'+str(folder)+ '/' + str(file), 'mag'))
+        dat.append(ownplot('Iron/'+str(folder)+ '/' + str(file), 'mag'))
         timeframe=dat[j][0][:2]+10
         tf=dat[j][0]+10.
         timeframes.append(tf)
@@ -868,11 +867,11 @@ def gadrate(folder):
         magframes.append(mf)
         vals=np.polyfit(timeframe, magframe, 1)
         slopes.append(vals[0])
-        tem.append(float(str(file).replace('.dat', '')))
+        #tem.append(float(str(file).replace('.dat', '')))
         mag=np.arange(0.0001,1,0.0001)
         S=float(folder.replace('initempS', '').replace('12', '0.5').replace('72', '3.5'))
         J=3*S/(S+1)*293
-
+        plt.plot(tf, mf, label=str(file))
         mags=np.arange(1e-4,1, 1e-4)
         eta=J/tem[-1]*mags
         brf=brillouin(eta, S)
@@ -945,7 +944,7 @@ def gadrate(folder):
     # for a in mmags:
     #    plt.hlines(a, 0,100)
     #    plt.plot(timeframe, vals[1]+vals[0]*mag[:len(timeframe)])
-    return(np.array(tem)/293., relaxtime)
+    return#(np.array(tem)/293., relaxtime)
 
 
 def supplot(fs):
@@ -1019,5 +1018,6 @@ def enniplot(fs):
 #plt.ylabel('$t_m$ [ps]', fontsize=18)
 #plt.xlim(0.4,1.01)
 #plt.ylim(0,1010)
-#plt.legend()
-#plt.show()
+tcplot()
+plt.legend()
+plt.show()
