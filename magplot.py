@@ -997,6 +997,24 @@ def enniplot(fs):
     plots[0].annotate(r'$\Delta(\rm{E}_e+\rm{E}_p)$', (1.35, 110), fontsize=fs-1, color=color8)
 
 
+def Jchangeplot():
+    directory=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'3TM_results/Nickel/J_change')
+    shortdir='Nickel/J_change'
+    files=os.listdir(directory)
+
+    for file in files:
+        t, m=ownplot(os.path.join(shortdir, file), 'mag')
+        #t, te, tp=ownplot(os.path.join(directory, file), 'tem')
+        plt.plot(t, m, label=str(file).replace('.dat', '').replace('1.0', ''))
+        plt.xlabel(r'delay [ps]', fontsize=16)
+        plt.ylabel(r'$m/m_0$', fontsize=16)
+        plt.title(r'Transient change of exchange coupling', fontsize=18)
+    plt.xlim(-0.1,5)
+    plt.legend(fontsize=10, loc='lower right')
+    plt.savefig(os.path.join(directory,'J_change.pdf'))
+    plt.show()
+
+Jchangeplot()
 
 
 #energy(15, colors[3])
@@ -1018,6 +1036,6 @@ def enniplot(fs):
 #plt.ylabel('$t_m$ [ps]', fontsize=18)
 #plt.xlim(0.4,1.01)
 #plt.ylim(0,1010)
-tcplot()
-plt.legend()
-plt.show()
+#tcplot()
+#plt.legend()
+#plt.show()
