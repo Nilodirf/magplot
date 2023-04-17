@@ -41,7 +41,7 @@ colors=np.array([color1,color2,color3,color4,color5,color6,color7,color8,color9,
 #colors=[color2, color6, color9]
 
 def ownplot(datei, tom):
-    input=open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_results/'+ str(datei)),'r')
+    input=open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '3TM_Data/'+ str(datei)),'r')
     content=input.read().split('\n')
     toplot=[line for line in content if not str(line).startswith('#')]
     columns=[line.split() for line in toplot]
@@ -90,59 +90,59 @@ def ownplot(datei, tom):
     return
 
 
-n1=ownplot('Nickel/c1.dat', 'mag')
-n2=ownplot('Nickel/c2.dat', 'mag')
-n3=ownplot('Nickel/c3.dat', 'mag')
-n4=ownplot('Nickel/c4.dat', 'mag')
-n5=ownplot('Nickel/c5.dat', 'mag')
-n6=ownplot('Nickel/c6.dat', 'mag')
-n7=ownplot('Nickel/c7.dat', 'mag')
-ns=[n1,n2,n3,n4,n5,n6,n7]
+# n1=ownplot('Nickel/c1.dat', 'mag')
+# n2=ownplot('Nickel/c2.dat', 'mag')
+# n3=ownplot('Nickel/c3.dat', 'mag')
+# n4=ownplot('Nickel/c4.dat', 'mag')
+# n5=ownplot('Nickel/c5.dat', 'mag')
+# n6=ownplot('Nickel/c6.dat', 'mag')
+# n7=ownplot('Nickel/c7.dat', 'mag')
+# ns=[n1,n2,n3,n4,n5,n6,n7]
+#
+# f1=ownplot('Iron/c1.dat', 'mag')
+# f2=ownplot('Iron/c2.dat', 'mag')
+# f3=ownplot('Iron/c3.dat', 'mag')
+# f4=ownplot('Iron/c4.dat', 'mag')
+# f5=ownplot('Iron/c5.dat', 'mag')
+# f6=ownplot('Iron/c6.dat', 'mag')
+# f7=ownplot('Iron/c7.dat', 'mag')
+# f8=ownplot('Iron/c8.dat', 'mag')
+# f9=ownplot('Iron/c9.dat', 'mag')
+# fs=[f1,f2,f3,f4,f5,f6,f7,f8,f9]
+#
+# c1=ownplot('Cobalt/c1.dat', 'mag')
+# c2=ownplot('Cobalt/c2.dat', 'mag')
+# c3=ownplot('Cobalt/c3.dat', 'mag')
+# c4=ownplot('Cobalt/c4.dat', 'mag')
+# c5=ownplot('Cobalt/c5.dat', 'mag')
+# c6=ownplot('Cobalt/c6.dat', 'mag')
+# c7=ownplot('Cobalt/c7.dat', 'mag')
+# c8=ownplot('Cobalt/c8.dat', 'mag')
+# c9=ownplot('Cobalt/c9.dat', 'mag')
+# cs=[c1,c2,c3,c4,c5,c6,c7,c8,c9]
 
-f1=ownplot('Iron/c1.dat', 'mag')
-f2=ownplot('Iron/c2.dat', 'mag')
-f3=ownplot('Iron/c3.dat', 'mag')
-f4=ownplot('Iron/c4.dat', 'mag')
-f5=ownplot('Iron/c5.dat', 'mag')
-f6=ownplot('Iron/c6.dat', 'mag')
-f7=ownplot('Iron/c7.dat', 'mag')
-f8=ownplot('Iron/c8.dat', 'mag')
-f9=ownplot('Iron/c9.dat', 'mag')
-fs=[f1,f2,f3,f4,f5,f6,f7,f8,f9]
 
-c1=ownplot('Cobalt/c1.dat', 'mag')
-c2=ownplot('Cobalt/c2.dat', 'mag')
-c3=ownplot('Cobalt/c3.dat', 'mag')
-c4=ownplot('Cobalt/c4.dat', 'mag')
-c5=ownplot('Cobalt/c5.dat', 'mag')
-c6=ownplot('Cobalt/c6.dat', 'mag')
-c7=ownplot('Cobalt/c7.dat', 'mag')
-c8=ownplot('Cobalt/c8.dat', 'mag')
-c9=ownplot('Cobalt/c9.dat', 'mag')
-cs=[c1,c2,c3,c4,c5,c6,c7,c8,c9]
-
-
-n1t=ownplot('Nickel/lattice/f1.dat', 'tem')
-n2t=ownplot('Nickel/lattice/f2.dat', 'tem')
-n3t=ownplot('Nickel/lattice/f3.dat', 'tem')
-n4t=ownplot('Nickel/lattice/f4.dat', 'tem')
-n5t=ownplot('Nickel/lattice/f5.dat', 'tem')
-n6t=ownplot('Nickel/lattice/f6.dat', 'tem')
-
-nite=ownplot('Nickel/lattice/tefit.dat', 'tem')
-nitenoq=ownplot('Nickel/lattice/tefitnoq.dat', 'tem')
-n3noqt=ownplot('Nickel/lattice/f3noq.dat', 'tem')
-n4noqt=ownplot('Nickel/lattice/f4noq.dat', 'tem')
-
-f1t=ownplot('Iron/lattice/230.dat', 'tem')
-f2t=ownplot('Iron/lattice/390.dat', 'tem')
-f3t=ownplot('Iron/lattice/550.dat', 'tem')
-f4t=ownplot('Iron/lattice/800.dat', 'tem')
-
-c1t=ownplot('Cobalt/lattice/110.dat', 'tem')
-c2t=ownplot('Cobalt/lattice/290.dat', 'tem')
-c3t=ownplot('Cobalt/lattice/530.dat', 'tem')
-c4t=ownplot('Cobalt/lattice/700.dat', 'tem')
+# n1t=ownplot('Nickel/lattice/f1.dat', 'tem')
+# n2t=ownplot('Nickel/lattice/f2.dat', 'tem')
+# n3t=ownplot('Nickel/lattice/f3.dat', 'tem')
+# n4t=ownplot('Nickel/lattice/f4.dat', 'tem')
+# n5t=ownplot('Nickel/lattice/f5.dat', 'tem')
+# n6t=ownplot('Nickel/lattice/f6.dat', 'tem')
+#
+# nite=ownplot('Nickel/lattice/tefit.dat', 'tem')
+# nitenoq=ownplot('Nickel/lattice/tefitnoq.dat', 'tem')
+# n3noqt=ownplot('Nickel/lattice/f3noq.dat', 'tem')
+# n4noqt=ownplot('Nickel/lattice/f4noq.dat', 'tem')
+#
+# f1t=ownplot('Iron/lattice/230.dat', 'tem')
+# f2t=ownplot('Iron/lattice/390.dat', 'tem')
+# f3t=ownplot('Iron/lattice/550.dat', 'tem')
+# f4t=ownplot('Iron/lattice/800.dat', 'tem')
+#
+# c1t=ownplot('Cobalt/lattice/110.dat', 'tem')
+# c2t=ownplot('Cobalt/lattice/290.dat', 'tem')
+# c3t=ownplot('Cobalt/lattice/530.dat', 'tem')
+# c4t=ownplot('Cobalt/lattice/700.dat', 'tem')
 
 
 
@@ -465,27 +465,27 @@ def convolute(sig, dat):  #sig in ps
             conv.append(np.sum(dt*gaussian*[tp[int(i-tau/dt)] for tau in trange]))
     return(np.array(time[:1500]), np.array(conv[:1500]))
 
-n1tc=convolute(0.065, n1t)
-n2tc=convolute(0.065, n2t)
-n3tc=convolute(0.065, n3t)
-n4tc=convolute(0.065, n4t)
-n5tc=convolute(0.065, n5t)
-n6tc=convolute(0.065, n6t)
-ntc=[n1tc, n2tc, n3tc, n4tc, n5tc, n6tc]
-n3noqtc=convolute(0.065, n3noqt)
-n4noqtc=convolute(0.065, n4noqt)
-
-f1tc=convolute(0.106, f1t)
-f2tc=convolute(0.106, f2t)
-f3tc=convolute(0.106, f3t)
-f4tc=convolute(0.106, f4t)
-ftc=[f1tc, f2tc, f3tc, f4tc]
-
-c1tc=convolute(0.106, c1t)
-c2tc=convolute(0.106, c2t)
-c3tc=convolute(0.106, c3t)
-c4tc=convolute(0.106, c4t)
-ctc=[c1tc, c2tc, c3tc, c4tc]
+# n1tc=convolute(0.065, n1t)
+# n2tc=convolute(0.065, n2t)
+# n3tc=convolute(0.065, n3t)
+# n4tc=convolute(0.065, n4t)
+# n5tc=convolute(0.065, n5t)
+# n6tc=convolute(0.065, n6t)
+# ntc=[n1tc, n2tc, n3tc, n4tc, n5tc, n6tc]
+# n3noqtc=convolute(0.065, n3noqt)
+# n4noqtc=convolute(0.065, n4noqt)
+#
+# f1tc=convolute(0.106, f1t)
+# f2tc=convolute(0.106, f2t)
+# f3tc=convolute(0.106, f3t)
+# f4tc=convolute(0.106, f4t)
+# ftc=[f1tc, f2tc, f3tc, f4tc]
+#
+# c1tc=convolute(0.106, c1t)
+# c2tc=convolute(0.106, c2t)
+# c3tc=convolute(0.106, c3t)
+# c4tc=convolute(0.106, c4t)
+# ctc=[c1tc, c2tc, c3tc, c4tc]
 
 
 #fe_ex=ownplot('Iron/c5.dat', 'mag', green, 1, 'solid', 'bla')
@@ -1014,7 +1014,7 @@ def Jchangeplot():
     plt.savefig(os.path.join(directory,'J_change.pdf'))
     plt.show()
 
-Jchangeplot()
+#Jchangeplot()
 
 
 #energy(15, colors[3])
@@ -1039,3 +1039,7 @@ Jchangeplot()
 #tcplot()
 #plt.legend()
 #plt.show()
+
+t, m=ownplot('FGT/overtctest.dat', 'mag')
+plt.plot(t,m)
+plt.show()
